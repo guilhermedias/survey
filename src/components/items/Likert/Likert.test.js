@@ -44,4 +44,17 @@ describe('Likert item component', () => {
 
     expect(answersInSameGroup).toHaveLength(5);
   });
+
+  it('assigns correct integer values to the answers', () => {
+    let wrapper = shallow(<Likert description = "Item description." />);
+
+    let answers = wrapper
+      .find('#answers');
+
+    expect(answers.childAt(0).prop('value')).toEqual("1");
+    expect(answers.childAt(1).prop('value')).toEqual("2");
+    expect(answers.childAt(2).prop('value')).toEqual("3");
+    expect(answers.childAt(3).prop('value')).toEqual("4");
+    expect(answers.childAt(4).prop('value')).toEqual("5");
+  });
 });

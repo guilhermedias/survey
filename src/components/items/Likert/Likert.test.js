@@ -22,4 +22,30 @@ describe('Likert item component', () => {
 
     expect(answers).toHaveLength(5);
   });
+
+  it('renders the answers as radio buttons', () => {
+    let wrapper = shallow(<Likert description = "Item description." />);
+
+    let answer = wrapper
+      .find('#answers')
+      .children()
+      .first();
+
+    expect(answer.type()).toEqual('input');
+    expect(answer.prop('type')).toEqual('radio');
+  });
+
+  it('renders all answers as part of the same group', () => {
+    let wrapper = shallow(<Likert description = "Item description." />);
+
+    let answers = wrapper
+      .find('#answers')
+      .children();
+
+    let answersInSameGroup = answers.filterWhere((answer) => {
+      return answer.prop('name') === 'answer';
+    });
+
+    expect(answersInSameGroup).toHaveLength(5);
+  });
 });

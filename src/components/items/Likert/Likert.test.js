@@ -6,6 +6,20 @@ describe('Likert item component', () => {
   it('renders the item description', () => {
     let wrapper = shallow(<Likert description = "Item description." />);
 
-    expect(wrapper.text()).toEqual('Item description.');
+    let description = wrapper
+      .find('#description')
+      .text()
+
+    expect(description).toEqual('Item description.');
+  });
+
+  it('renders the correct default number of answers', () => {
+    let wrapper = shallow(<Likert description = "Item description." />);
+
+    let answers = wrapper
+      .find('#answers')
+      .children();
+
+    expect(answers).toHaveLength(5);
   });
 });

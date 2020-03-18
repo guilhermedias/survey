@@ -6,11 +6,7 @@ describe('Likert item component', () => {
   it('renders the item description', () => {
     let wrapper = shallow(<Likert description = "Item description." />);
 
-    let description = wrapper
-      .find('#description')
-      .text()
-
-    expect(description).toEqual('Item description.');
+    expect(wrapper).toIncludeText('Item description.');
   });
 
   it('renders the correct default number of answers', () => {
@@ -31,8 +27,8 @@ describe('Likert item component', () => {
       .children()
       .first();
 
-    expect(answer.type()).toEqual('input');
-    expect(answer.prop('type')).toEqual('radio');
+    expect(answer).toHaveDisplayName('input');
+    expect(answer).toHaveProp('type', 'radio');
   });
 
   it('renders all answers as part of the same group', () => {

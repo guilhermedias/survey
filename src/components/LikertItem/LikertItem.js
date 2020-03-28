@@ -1,7 +1,7 @@
 import React from 'react';
-import './Likert.css';
+import './LikertItem.css';
 
-class Likert extends React.Component {
+class LikertItem extends React.Component {
   constructor(props) {
     super(props);
 
@@ -62,4 +62,4 @@ class Likert extends React.Component {
   }
 }
 
-export default Likert;
+export default LikertItem;

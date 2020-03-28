@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Likert from './components/Likert/Likert';
+import LikertItem from './components/LikertItem/LikertItem';
 import './index.css';
 
-ReactDOM.render(<Likert statement = "Item statement" numberOfChoices = "7" />, document.getElementById('root'));
+ReactDOM.render(<LikertItem statement = "Item statement" numberOfChoices = "7" />, document.getElementById('root'));

@@ -1,5 +1,6 @@
 import React from 'react';
 import LikertItem from '../LikertItem/LikertItem';
+import './LikertGroup.css';
 
 class LikertGroup extends React.Component {
   constructor(props) {
@@ -35,8 +36,11 @@ class LikertGroup extends React.Component {
     });
 
     return (
-      <div>
-        { this.props.description }
+      <div className = "likert-group">
+        <div className = "likert-group-description">
+          { this.props.description }
+        </div>
+
         { items }
       </div>
     );

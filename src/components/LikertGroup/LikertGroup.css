@@ -1,0 +1,19 @@
+.likert-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 900px;
+  margin-top: 25px;
+  border: 1px solid #576071;
+}
+
+.likert-group-description {
+  color: #ffffff;
+  background: #576071;
+  font-weight: 400;
+  font-family: "Helvetica Neue", "Open Sans", Arial;
+  width: 100%;
+  padding: 15px 0px 15px;
+  text-align: center;
+}

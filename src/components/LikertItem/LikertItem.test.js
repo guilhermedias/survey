@@ -36,11 +36,11 @@ describe('LikertItem component', () => {
     let choices = wrapper
       .find('.choices');
 
-    expect(choices.childAt(0).key()).toEqual("1");
-    expect(choices.childAt(1).key()).toEqual("2");
-    expect(choices.childAt(2).key()).toEqual("3");
-    expect(choices.childAt(3).key()).toEqual("4");
-    expect(choices.childAt(4).key()).toEqual("5");
+    expect(choices.childAt(0).key()).toEqual('1');
+    expect(choices.childAt(1).key()).toEqual('2');
+    expect(choices.childAt(2).key()).toEqual('3');
+    expect(choices.childAt(3).key()).toEqual('4');
+    expect(choices.childAt(4).key()).toEqual('5');
   });
 
   it('selects the clicked choice', () => {

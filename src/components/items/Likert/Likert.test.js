@@ -9,7 +9,7 @@ describe('Likert item component', () => {
     expect(wrapper).toIncludeText('Item description.');
   });
 
-  it('renders the correct default number of answers', () => {
+  it('renders the correct number of default answers', () => {
     let wrapper = shallow(<Likert description = "Item description." />);
 
     let answers = wrapper
@@ -56,5 +56,15 @@ describe('Likert item component', () => {
     expect(answers.childAt(2).prop('value')).toEqual("3");
     expect(answers.childAt(3).prop('value')).toEqual("4");
     expect(answers.childAt(4).prop('value')).toEqual("5");
+  });
+
+  it('renders the correct number of answers', () => {
+    let wrapper = shallow(<Likert description = "Item description." numberOfAnswers = "7" />);
+
+    let answers = wrapper
+      .find('#answers')
+      .children();
+
+    expect(answers).toHaveLength(7);
   });
 });

@@ -50,8 +50,8 @@ class Likert extends React.Component {
 
     return (
       <div className="likert-item">
-        <div className = "description">
-          { this.props.description }
+        <div className = "statement">
+          { this.props.statement }
         </div>
 
         <div className = "choices">

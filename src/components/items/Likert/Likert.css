@@ -1,0 +1,21 @@
+.likert-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px 0px 15px;
+}
+
+.description {
+  color: #576071;
+  font-weight: 600;
+  font-family: "Helvetica Neue", "Open Sans", Arial;
+  margin: 10px 0px 10px;
+}
+
+.answers {
+  margin: 10px 0px 10px;
+}
+
+.answer {
+}

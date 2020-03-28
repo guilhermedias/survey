@@ -1,4 +1,5 @@
 import React from 'react';
+import './Likert.css';
 
 class Likert extends React.Component {
   render() {
@@ -15,16 +16,22 @@ class Likert extends React.Component {
     let answers = answerValues.map((numericAnswerValue) => {
       let answerValue = numericAnswerValue.toString();
 
-      return <input type = "radio" name = "answer" value = { answerValue } key = { answerValue }/>
+      return <input
+        type = "radio"
+        name = "answer"
+        className = "answer"
+        value = { answerValue }
+        key = { answerValue }
+      />
     });
 
     return (
-      <div>
-        <div id = "description">
+      <div className="likert-item">
+        <div id = "description" className = "description">
           { this.props.description }
         </div>
 
-        <div id = "answers">
+        <div id = "answers" className = "answers">
           { answers }
         </div>
       </div>

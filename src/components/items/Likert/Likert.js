@@ -2,10 +2,18 @@ import React from 'react';
 import './Likert.css';
 
 class Likert extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selected: 0
+    };
+  }
+
   render() {
     let numberOfAnswers = parseInt(this.props.numberOfAnswers) || 5;
 
-    let answerValues = Array.from(
+    let answerKeys = Array.from(
       {
         length: numberOfAnswers
       },
@@ -13,15 +21,13 @@ class Likert extends React.Component {
     );
 
 
-    let answers = answerValues.map((numericAnswerValue) => {
-      let answerValue = numericAnswerValue.toString();
-
-      return <input
-        type = "radio"
-        name = "answer"
-        className = "answer"
-        value = { answerValue }
-        key = { answerValue }
+    let answers = answerKeys.map((answerKey) => {
+      return <div key = { answerKey } className = "answer" onClick = {
+        () => {
+          this.setState({
+            selected: answerKey
+          });
+        }}
       />
     });
 

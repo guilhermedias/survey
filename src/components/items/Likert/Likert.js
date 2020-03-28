@@ -27,17 +27,27 @@ class Likert extends React.Component {
     }
   }
 
+  buildAnswerWith(answerKey) {
+      var className ='answer';
+
+      if(answerKey === this.state.selected) {
+        className += ' selected';
+      }
+
+      return <div
+        key = { answerKey }
+        className = { className }
+        onClick = { this.buildClickHanderForAnswerWith(answerKey) }
+      />
+  }
+
   render() {
     let numberOfAnswers = parseInt(this.props.numberOfAnswers) || 5;
 
     let answerKeys = this.buildArrayOfKeysWithSize(numberOfAnswers);
 
     let answers = answerKeys.map((answerKey) => {
-      return <div
-        key = { answerKey }
-        className = "answer"
-        onClick = { this.buildClickHanderForAnswerWith(answerKey) }
-      />
+      return this.buildAnswerWith(answerKey);
     });
 
     return (

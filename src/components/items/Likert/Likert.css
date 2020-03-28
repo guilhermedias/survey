@@ -34,3 +34,7 @@
   background: #9b9faa;
   cursor: pointer;
 }
+
+.selected {
+  background: #9b9faa;
+}

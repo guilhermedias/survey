@@ -13,7 +13,7 @@ describe('Likert item component', () => {
     let wrapper = shallow(<Likert description = "Item description." numberOfAnswers = "7" />);
 
     let answers = wrapper
-      .find('#answers')
+      .find('.answers')
       .children();
 
     expect(answers).toHaveLength(7);
@@ -23,7 +23,7 @@ describe('Likert item component', () => {
     let wrapper = shallow(<Likert description = "Item description." />);
 
     let answers = wrapper
-      .find('#answers')
+      .find('.answers')
       .children();
 
     expect(answers).toHaveLength(5);
@@ -34,7 +34,7 @@ describe('Likert item component', () => {
     let wrapper = shallow(<Likert description = "Item description." />);
 
     let answers = wrapper
-      .find('#answers');
+      .find('.answers');
 
     expect(answers.childAt(0).key()).toEqual("1");
     expect(answers.childAt(1).key()).toEqual("2");
@@ -47,7 +47,7 @@ describe('Likert item component', () => {
     let wrapper = shallow(<Likert description = "Item description." />);
 
     let middleAnswer = wrapper
-      .find('#answers')
+      .find('.answers')
       .childAt(2);
 
     middleAnswer.simulate('click');

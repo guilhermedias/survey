@@ -33,11 +33,11 @@ class Likert extends React.Component {
 
     return (
       <div className="likert-item">
-        <div id = "description" className = "description">
+        <div className = "description">
           { this.props.description }
         </div>
 
-        <div id = "answers" className = "answers">
+        <div className = "answers">
           { answers }
         </div>
       </div>

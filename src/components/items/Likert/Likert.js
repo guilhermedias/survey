@@ -46,9 +46,7 @@ class Likert extends React.Component {
 
     let choiceKeys = this.buildArrayOfKeysWithSize(numberOfChoices);
 
-    let choices = choiceKeys.map((choiceKey) => {
-      return this.buildChoiceWith(choiceKey);
-    });
+    let choices = choiceKeys.map((choiceKey) => this.buildChoiceWith(choiceKey));
 
     return (
       <div className="likert-item">

@@ -19,35 +19,35 @@ class Likert extends React.Component {
     );
   }
 
-  buildClickHanderForAnswerWith(answerKey) {
+  buildClickHanderForChoiceWith(choiceKey) {
     return () => {
       this.setState({
-        selected: answerKey
+        selected: choiceKey
       });
     }
   }
 
-  buildAnswerWith(answerKey) {
-      var className ='answer';
+  buildChoiceWith(choiceKey) {
+      var className ='choice';
 
-      if(answerKey === this.state.selected) {
+      if(choiceKey === this.state.selected) {
         className += ' selected';
       }
 
       return <div
-        key = { answerKey }
+        key = { choiceKey }
         className = { className }
-        onClick = { this.buildClickHanderForAnswerWith(answerKey) }
+        onClick = { this.buildClickHanderForChoiceWith(choiceKey) }
       />
   }
 
   render() {
-    let numberOfAnswers = parseInt(this.props.numberOfAnswers) || 5;
+    let numberOfChoices = parseInt(this.props.numberOfChoices) || 5;
 
-    let answerKeys = this.buildArrayOfKeysWithSize(numberOfAnswers);
+    let choiceKeys = this.buildArrayOfKeysWithSize(numberOfChoices);
 
-    let answers = answerKeys.map((answerKey) => {
-      return this.buildAnswerWith(answerKey);
+    let choices = choiceKeys.map((choiceKey) => {
+      return this.buildChoiceWith(choiceKey);
     });
 
     return (
@@ -56,8 +56,8 @@ class Likert extends React.Component {
           { this.props.description }
         </div>
 
-        <div className = "answers">
-          { answers }
+        <div className = "choices">
+          { choices }
         </div>
       </div>
     );

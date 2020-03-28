@@ -9,48 +9,48 @@ describe('Likert item component', () => {
     expect(wrapper).toIncludeText('Item description.');
   });
 
-  it('renders the correct number of answers based on property', () => {
-    let wrapper = shallow(<Likert description = "Item description." numberOfAnswers = "7" />);
+  it('renders the correct number of choices based on property', () => {
+    let wrapper = shallow(<Likert description = "Item description." numberOfChoices = "7" />);
 
-    let answers = wrapper
-      .find('.answers')
+    let choices = wrapper
+      .find('.choices')
       .children();
 
-    expect(answers).toHaveLength(7);
+    expect(choices).toHaveLength(7);
   });
 
-  it('renders the correct number of default answers', () => {
+  it('renders the correct number of default choices', () => {
     let wrapper = shallow(<Likert description = "Item description." />);
 
-    let answers = wrapper
-      .find('.answers')
+    let choices = wrapper
+      .find('.choices')
       .children();
 
-    expect(answers).toHaveLength(5);
+    expect(choices).toHaveLength(5);
   });
 
 
-  it('assigns correct integer key to the answers', () => {
+  it('assigns correct integer key to the choices', () => {
     let wrapper = shallow(<Likert description = "Item description." />);
 
-    let answers = wrapper
-      .find('.answers');
+    let choices = wrapper
+      .find('.choices');
 
-    expect(answers.childAt(0).key()).toEqual("1");
-    expect(answers.childAt(1).key()).toEqual("2");
-    expect(answers.childAt(2).key()).toEqual("3");
-    expect(answers.childAt(3).key()).toEqual("4");
-    expect(answers.childAt(4).key()).toEqual("5");
+    expect(choices.childAt(0).key()).toEqual("1");
+    expect(choices.childAt(1).key()).toEqual("2");
+    expect(choices.childAt(2).key()).toEqual("3");
+    expect(choices.childAt(3).key()).toEqual("4");
+    expect(choices.childAt(4).key()).toEqual("5");
   });
 
-  it('selects the clicked answer', () => {
+  it('selects the clicked choice', () => {
     let wrapper = shallow(<Likert description = "Item description." />);
 
-    let middleAnswer = wrapper
-      .find('.answers')
+    let middleChoice = wrapper
+      .find('.choices')
       .childAt(2);
 
-    middleAnswer.simulate('click');
+    middleChoice.simulate('click');
 
     expect(wrapper.state('selected')).toEqual(3);
   });

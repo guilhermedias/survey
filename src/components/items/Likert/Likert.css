@@ -14,7 +14,7 @@
   margin: 10px 0px 10px;
 }
 
-.answers {
+.choices {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -22,7 +22,7 @@
   margin: 10px 0px 10px;
 }
 
-.answer {
+.choice {
   height: 35px;
   width: 35px;
   margin: 15px 15px 5px;
@@ -30,7 +30,7 @@
   border-radius: 50%;
 }
 
-.answer:hover {
+.choice:hover {
   background: #9b9faa;
   cursor: pointer;
 }

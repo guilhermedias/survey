@@ -1,0 +1,17 @@
+{
+  "surveys": [
+    {
+      "id": 1,
+      "items": [
+        {
+          "id": 1,
+          "statement": "Likert item statement 1."
+        },
+        {
+          "id": 2,
+          "statement": "Likert item statement 2."
+        }
+      ]
+    }
+  ]
+}

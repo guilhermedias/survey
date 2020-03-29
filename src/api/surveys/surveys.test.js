@@ -7,7 +7,9 @@ jest.mock('../baseURL', () => 'base.url.com');
 describe('Surveys API', () => {
   it('retrieves the survey by ID', async () => {
     axios.get.mockResolvedValue({
-      id: 1
+      data: {
+        id: 1
+      }
     });
 
     let survey = await SurveysAPI.getSurveyByID(1);

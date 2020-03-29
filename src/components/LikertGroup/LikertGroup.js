@@ -13,10 +13,10 @@ class LikertGroup extends React.Component {
   }
 
   async componentDidMount() {
-    let response = await SurveysAPI.getSurveyByID(1);
+    let survey = await SurveysAPI.getSurveyByID(1);
 
     this.setState({
-      items: response.data.items
+      items: survey.items
     });
   }
 

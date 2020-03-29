@@ -12,19 +12,17 @@ const flushPromises = () =>
 describe('LikertGroup component', () => {
   beforeAll(() => {
     SurveysAPI.getSurveyByID.mockResolvedValue({
-      data: {
-        id: 1,
-        items: [
-          {
-            id: 1,
-            statement: "Likert item statement 1."
-          },
-          {
-            id: 2,
-            statement: "Likert item statement 2."
-          }
-        ]
-      }
+      id: 1,
+      items: [
+        {
+          id: 1,
+          statement: "Likert item statement 1."
+        },
+        {
+          id: 2,
+          statement: "Likert item statement 2."
+        }
+      ]
     });
   });
 

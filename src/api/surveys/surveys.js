@@ -5,7 +5,7 @@ const SurveysAPI = {
   getSurveyByID: async (id) => {
     let response = await axios.get(`${baseURL}/surveys/${id}`);
 
-    return response;
+    return response.data;
   }
 }
 

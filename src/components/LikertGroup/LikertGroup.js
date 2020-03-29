@@ -1,5 +1,6 @@
 import React from 'react';
 import LikertItem from '../LikertItem/LikertItem';
+import SurveysAPI from '../../api/surveys/surveys';
 import './LikertGroup.css';
 
 class LikertGroup extends React.Component {
@@ -7,17 +8,16 @@ class LikertGroup extends React.Component {
     super(props);
 
     this.state = {
-      items: [
-        {
-          id: 1,
-          statement: "Likert item statement 1."
-        },
-        {
-          id: 2,
-          statement: "Likert item statement 2."
-        }
-      ]
+      items: []
     };
+  }
+
+  async componentDidMount() {
+    let response = await SurveysAPI.getSurveyByID(1);
+
+    this.setState({
+      items: response.data.items
+    });
   }
 
   render() {

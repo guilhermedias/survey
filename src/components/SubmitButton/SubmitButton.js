@@ -4,7 +4,7 @@ import './SubmitButton.css';
 class SubmitButton extends React.Component {
   render() {
     return (
-      <div className = 'submit-button'>
+      <div className = 'submit-button' onClick = { this.props.onClick }>
         Submit
       </div>
     );

@@ -8,4 +8,13 @@ describe('SubmitButton component', () => {
 
     expect(wrapper).toIncludeText('Submit');
   });
+
+  it('calls the click handler', () => {
+    let handler = jest.fn();
+    let wrapper = shallow(<SubmitButton onClick = { handler }/>);
+
+    wrapper.simulate('click');
+
+    expect(handler).toHaveBeenCalled();
+  });
 });

@@ -19,34 +19,34 @@ class LikertItem extends React.Component {
     );
   }
 
-  buildClickHanderForChoiceWith(choiceKey) {
+  buildClickHanderForChoiceWith(choiceId) {
     return () => {
       this.setState({
-        selected: choiceKey
+        selected: choiceId
       });
     }
   }
 
-  buildChoiceWith(choiceKey) {
+  buildChoiceWith(choiceId) {
       var className ='choice';
 
-      if(choiceKey === this.state.selected) {
+      if(choiceId === this.state.selected) {
         className += ' selected';
       }
 
       return <div
-        key = { choiceKey }
+        key = { choiceId }
         className = { className }
-        onClick = { this.buildClickHanderForChoiceWith(choiceKey) }
+        onClick = { this.buildClickHanderForChoiceWith(choiceId) }
       />
   }
 
   render() {
     let numberOfChoices = parseInt(this.props.numberOfChoices) || 5;
 
-    let choiceKeys = this.buildArrayOfKeysWithSize(numberOfChoices);
+    let choiceIds = this.buildArrayOfKeysWithSize(numberOfChoices);
 
-    let choices = choiceKeys.map((choiceKey) => this.buildChoiceWith(choiceKey));
+    let choices = choiceIds.map((choiceId) => this.buildChoiceWith(choiceId));
 
     return (
       <div className="likert-item">

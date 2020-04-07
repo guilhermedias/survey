@@ -10,6 +10,14 @@ class LikertGroup extends React.Component {
     this.state = {
       items: []
     };
+
+    this.defaultSelectionHandler.bind(this);
+  }
+
+  defaultSelectionHandler(itemId, choiceId) {
+    console.log('Selection handler');
+    console.log(`Item ID: ${itemId}`);
+    console.log(`Choice ID: ${choiceId}`);
   }
 
   async componentDidMount() {
@@ -32,6 +40,7 @@ class LikertGroup extends React.Component {
         id = { item.id }
         key = { item.id }
         statement = { item.statement }
+        selectionHandler = { this.defaultSelectionHandler }
         { ...optionalProps }
       />
     });

@@ -4,13 +4,13 @@ import { shallow } from 'enzyme';
 
 describe('LikertItem component', () => {
   it('renders the item statement', () => {
-    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." />);
+    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." selectionHandler = { jest.fn() } />);
 
     expect(wrapper).toIncludeText('Item statement.');
   });
 
   it('renders the correct number of choices based on property', () => {
-    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." numberOfChoices = "7" />);
+    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." selectionHandler = { jest.fn() } numberOfChoices = "7" />);
 
     let choices = wrapper
       .find('.choices')
@@ -20,7 +20,7 @@ describe('LikertItem component', () => {
   });
 
   it('renders the correct number of default choices', () => {
-    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." />);
+    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." selectionHandler = { jest.fn() } />);
 
     let choices = wrapper
       .find('.choices')
@@ -31,7 +31,7 @@ describe('LikertItem component', () => {
 
 
   it('assigns correct integer key to the choices', () => {
-    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." />);
+    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." selectionHandler = { jest.fn() } />);
 
     let choices = wrapper
       .find('.choices');
@@ -44,7 +44,7 @@ describe('LikertItem component', () => {
   });
 
   it('selects the clicked choice', () => {
-    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." />);
+    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." selectionHandler = { jest.fn() } />);
 
     let middleChoice = wrapper
       .find('.choices')
@@ -53,5 +53,18 @@ describe('LikertItem component', () => {
     middleChoice.simulate('click');
 
     expect(wrapper.state('selected')).toEqual(3);
+  });
+
+  it('invokes the selection handler', () => {
+    let handler = jest.fn();
+    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." selectionHandler = { handler } />);
+
+    let middleChoice = wrapper
+      .find('.choices')
+      .childAt(2);
+
+    middleChoice.simulate('click');
+
+    expect(handler).toHaveBeenCalledWith(1, 3);
   });
 });

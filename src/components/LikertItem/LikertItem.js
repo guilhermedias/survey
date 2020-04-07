@@ -21,6 +21,10 @@ class LikertItem extends React.Component {
 
   buildClickHanderForChoiceWith(choiceId) {
     return () => {
+      let itemId = parseInt(this.props.id);
+
+      this.props.selectionHandler(itemId, choiceId);
+
       this.setState({
         selected: choiceId
       });

@@ -1,9 +1,12 @@
 import React from 'react';
+import './SubmitButton.css';
 
 class SubmitButton extends React.Component {
   render() {
     return (
-      <div>Submit</div>
+      <div className = 'submit-button'>
+        Submit
+      </div>
     );
   }
 }

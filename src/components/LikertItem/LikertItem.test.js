@@ -4,13 +4,13 @@ import { shallow } from 'enzyme';
 
 describe('LikertItem component', () => {
   it('renders the item statement', () => {
-    let wrapper = shallow(<LikertItem statement = "Item statement." />);
+    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." />);
 
     expect(wrapper).toIncludeText('Item statement.');
   });
 
   it('renders the correct number of choices based on property', () => {
-    let wrapper = shallow(<LikertItem statement = "Item statement." numberOfChoices = "7" />);
+    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." numberOfChoices = "7" />);
 
     let choices = wrapper
       .find('.choices')
@@ -20,7 +20,7 @@ describe('LikertItem component', () => {
   });
 
   it('renders the correct number of default choices', () => {
-    let wrapper = shallow(<LikertItem statement = "Item statement." />);
+    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." />);
 
     let choices = wrapper
       .find('.choices')
@@ -31,7 +31,7 @@ describe('LikertItem component', () => {
 
 
   it('assigns correct integer key to the choices', () => {
-    let wrapper = shallow(<LikertItem statement = "Item statement." />);
+    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." />);
 
     let choices = wrapper
       .find('.choices');
@@ -44,7 +44,7 @@ describe('LikertItem component', () => {
   });
 
   it('selects the clicked choice', () => {
-    let wrapper = shallow(<LikertItem statement = "Item statement." />);
+    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." />);
 
     let middleChoice = wrapper
       .find('.choices')

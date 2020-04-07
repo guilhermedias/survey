@@ -29,6 +29,7 @@ class LikertGroup extends React.Component {
       }
 
       return <LikertItem
+        id = { item.id }
         key = { item.id }
         statement = { item.statement }
         { ...optionalProps }

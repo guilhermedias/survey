@@ -16,7 +16,8 @@ class LikertGroup extends React.Component {
     let newItems = this.state.items.map((item) => {
       let newItem = {
         id: item.id,
-        statement: item.statement
+        statement: item.statement,
+        selected: item.selected
       };
 
       if(item.id === itemId) {

@@ -2,14 +2,6 @@ import React from 'react';
 import './LikertItem.css';
 
 class LikertItem extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selected: 0
-    };
-  }
-
   buildArrayOfIdsWithSize(arraySize) {
     return Array.from(
       {
@@ -24,17 +16,13 @@ class LikertItem extends React.Component {
       let itemId = parseInt(this.props.id);
 
       this.props.selectionHandler(itemId, choiceId);
-
-      this.setState({
-        selected: choiceId
-      });
     }
   }
 
   buildChoiceWith(choiceId) {
     var className ='choice';
 
-    let selected = parseInt(this.props.selected) || this.state.selected;
+    let selected = parseInt(this.props.selected) || 0;
 
     if(choiceId === selected) {
       className += ' selected';

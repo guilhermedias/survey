@@ -52,18 +52,6 @@ describe('LikertItem component', () => {
     expect(middleChoice).toHaveClassName('selected');
   });
 
-  it('selects the clicked choice', () => {
-    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." selectionHandler = { jest.fn() } />);
-
-    let middleChoice = wrapper
-      .find('.choices')
-      .childAt(2);
-
-    middleChoice.simulate('click');
-
-    expect(wrapper.state('selected')).toEqual(3);
-  });
-
   it('invokes the selection handler', () => {
     let handler = jest.fn();
     let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." selectionHandler = { handler } />);

@@ -52,6 +52,7 @@ class LikertGroup extends React.Component {
         id = { item.id }
         key = { item.id }
         statement = { item.statement }
+        selected = { item.selected }
         selectionHandler = { this.selectionHandler.bind(this) }
         { ...optionalProps }
       />

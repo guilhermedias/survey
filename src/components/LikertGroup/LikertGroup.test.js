@@ -63,4 +63,24 @@ describe('LikertGroup component', () => {
 
     expect(item).toHaveProp('numberOfChoices', '7');
   });
+
+  it('updates its state when a choice is selected', async () => {
+    SurveysAPI.getSurveyByID.mockResolvedValue({
+      id: 1,
+      items: [
+        {
+          id: 1,
+          statement: "Likert item statement 1."
+        }
+      ]
+    });
+
+    let wrapper = shallow(<LikertGroup description = "Likert group description." />);
+    await flushPromises();
+
+    wrapper.instance().selectionHandler(1, 3);
+
+    let selected = wrapper.state().items[0].selected;
+    expect(selected).toBe(3);
+  });
 });

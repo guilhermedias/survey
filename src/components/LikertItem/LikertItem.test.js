@@ -29,7 +29,6 @@ describe('LikertItem component', () => {
     expect(choices).toHaveLength(5);
   });
 
-
   it('assigns correct integer key to the choices', () => {
     let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." selectionHandler = { jest.fn() } />);
 
@@ -41,6 +40,16 @@ describe('LikertItem component', () => {
     expect(choices.childAt(2).key()).toEqual('3');
     expect(choices.childAt(3).key()).toEqual('4');
     expect(choices.childAt(4).key()).toEqual('5');
+  });
+
+  it('renders the selected choice', () => {
+    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." selectionHandler = { jest.fn() } selected = "3" />);
+
+    let middleChoice = wrapper
+      .find('.choices')
+      .childAt(2);
+
+    expect(middleChoice).toHaveClassName('selected');
   });
 
   it('selects the clicked choice', () => {

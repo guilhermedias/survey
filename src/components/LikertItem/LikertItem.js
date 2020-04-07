@@ -10,7 +10,7 @@ class LikertItem extends React.Component {
     };
   }
 
-  buildArrayOfKeysWithSize(arraySize) {
+  buildArrayOfIdsWithSize(arraySize) {
     return Array.from(
       {
         length: arraySize
@@ -32,23 +32,25 @@ class LikertItem extends React.Component {
   }
 
   buildChoiceWith(choiceId) {
-      var className ='choice';
+    var className ='choice';
 
-      if(choiceId === this.state.selected) {
-        className += ' selected';
-      }
+    let selected = parseInt(this.props.selected) || this.state.selected;
 
-      return <div
-        key = { choiceId }
-        className = { className }
-        onClick = { this.buildClickHanderForChoiceWith(choiceId) }
-      />
+    if(choiceId === selected) {
+      className += ' selected';
+    }
+
+    return <div
+      key = { choiceId }
+      className = { className }
+      onClick = { this.buildClickHanderForChoiceWith(choiceId) }
+    />
   }
 
   render() {
     let numberOfChoices = parseInt(this.props.numberOfChoices) || 5;
 
-    let choiceIds = this.buildArrayOfKeysWithSize(numberOfChoices);
+    let choiceIds = this.buildArrayOfIdsWithSize(numberOfChoices);
 
     let choices = choiceIds.map((choiceId) => this.buildChoiceWith(choiceId));
 

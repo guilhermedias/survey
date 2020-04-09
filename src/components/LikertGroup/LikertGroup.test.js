@@ -117,7 +117,7 @@ describe('LikertGroup component', () => {
       .simulate('click');
 
     expect(SurveysAPI.saveSurveyData).toHaveBeenCalledWith({
-      id: 1,
+      surveyId: 1,
       items: [
         {
           id: 1,

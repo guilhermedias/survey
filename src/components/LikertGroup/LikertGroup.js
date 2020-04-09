@@ -42,7 +42,7 @@ class LikertGroup extends React.Component {
     });
 
     let surveyData = {
-      id: this.state.id,
+      surveyId: this.state.id,
       items: surveyDataItems
     };
 

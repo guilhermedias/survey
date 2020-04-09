@@ -1,5 +1,6 @@
 import React from 'react';
 import LikertItem from '../LikertItem/LikertItem';
+import SubmitButton from '../SubmitButton/SubmitButton';
 import SurveysAPI from '../../api/surveys/surveys';
 import './LikertGroup.css';
 
@@ -65,6 +66,8 @@ class LikertGroup extends React.Component {
         </div>
 
         { items }
+
+        <SubmitButton />
       </div>
     );
   }

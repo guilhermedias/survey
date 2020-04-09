@@ -1,6 +1,7 @@
 import React from 'react';
 import LikertGroup from './LikertGroup';
 import LikertItem from '../LikertItem/LikertItem';
+import SubmitButton from '../SubmitButton/SubmitButton';
 import SurveysAPI from '../../api/surveys/surveys';
 import { shallow } from 'enzyme';
 
@@ -30,6 +31,14 @@ describe('LikertGroup component', () => {
     let wrapper = shallow(<LikertGroup description = "Likert group description." />);
 
     expect(wrapper).toIncludeText('Likert group description.');
+  });
+
+  it('renders the submit button', () => {
+    let wrapper = shallow(<LikertGroup description = "Likert group description." />);
+
+    let submitButtonExists = wrapper.exists(SubmitButton);
+
+    expect(submitButtonExists).toBe(true);
   });
 
   it('renders the correct number of Likert items', async () => {

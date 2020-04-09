@@ -1,16 +1,14 @@
 import axios from 'axios';
 import baseURL from '../baseURL';
 
-const SurveysAPI = {
-  getSurveyByID: async (id) => {
+class SurveysAPI {
+  static async getSurveyByID(id) {
     let response = await axios.get(`${baseURL}/surveys/${id}`);
-
     return response.data;
-  },
+  }
 
-  saveSurveyData: async (surveyData) => {
+  static async saveSurveyData(surveyData) {
     let response = await axios.post(`${baseURL}/data`, surveyData);
-
     return response.data;
   }
 }

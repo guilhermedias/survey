@@ -33,10 +33,29 @@ class LikertGroup extends React.Component {
     });
   }
 
+  async submissionHandler() {
+    let surveyDataItems = this.state.items.map((item) => {
+      return {
+        id: item.id,
+        selected: item.selected
+      };
+    });
+
+    let surveyData = {
+      id: this.state.id,
+      items: surveyDataItems
+    };
+
+    let response = await SurveysAPI.saveSurveyData(surveyData);
+
+    console.log(response);
+  }
+
   async componentDidMount() {
     let survey = await SurveysAPI.getSurveyByID(1);
 
     this.setState({
+      id: survey.id,
       items: survey.items
     });
   }
@@ -67,7 +86,7 @@ class LikertGroup extends React.Component {
 
         { items }
 
-        <SubmitButton />
+        <SubmitButton onClick = { this.submissionHandler.bind(this) } />
       </div>
     );
   }

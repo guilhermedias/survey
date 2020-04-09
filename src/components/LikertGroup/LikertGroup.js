@@ -46,9 +46,7 @@ class LikertGroup extends React.Component {
       items: surveyDataItems
     };
 
-    let response = await SurveysAPI.saveSurveyData(surveyData);
-
-    console.log(response);
+    await SurveysAPI.saveSurveyData(surveyData);
   }
 
   async componentDidMount() {

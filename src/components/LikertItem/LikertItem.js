@@ -36,7 +36,7 @@ class LikertItem extends React.Component {
   }
 
   render() {
-    let numberOfChoices = parseInt(this.props.numberOfChoices) || 5;
+    let numberOfChoices = parseInt(this.props.numberOfChoices);
 
     let choiceIds = this.buildArrayOfIdsWithSize(numberOfChoices);
 

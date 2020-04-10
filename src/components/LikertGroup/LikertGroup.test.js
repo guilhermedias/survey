@@ -14,6 +14,7 @@ describe('LikertGroup component', () => {
   beforeAll(() => {
     SurveysAPI.getSurveyByID.mockResolvedValue({
       id: 1,
+      description: 'Likert group description.',
       items: [
         {
           id: 1,
@@ -27,14 +28,16 @@ describe('LikertGroup component', () => {
     });
   });
 
-  it('renders the group description', () => {
-    let wrapper = shallow(<LikertGroup description = "Likert group description." />);
+  it('renders the group description', async () => {
+    let wrapper = shallow(<LikertGroup />);
+    await flushPromises();
 
     expect(wrapper).toIncludeText('Likert group description.');
   });
 
-  it('renders the submit button', () => {
-    let wrapper = shallow(<LikertGroup description = "Likert group description." />);
+  it('renders the submit button', async () => {
+    let wrapper = shallow(<LikertGroup />);
+    await flushPromises();
 
     let submitButtonExists = wrapper.exists(SubmitButton);
 
@@ -42,7 +45,7 @@ describe('LikertGroup component', () => {
   });
 
   it('renders the correct number of Likert items', async () => {
-    let wrapper = shallow(<LikertGroup description = "Likert group description." />);
+    let wrapper = shallow(<LikertGroup />);
     await flushPromises();
 
     let items = wrapper
@@ -52,7 +55,7 @@ describe('LikertGroup component', () => {
   });
 
   it('renders the Likert items with the correct number of default choices', async () => {
-    let wrapper = shallow(<LikertGroup description = "Likert group description." />);
+    let wrapper = shallow(<LikertGroup />);
     await flushPromises();
 
     let item = wrapper
@@ -63,7 +66,7 @@ describe('LikertGroup component', () => {
   });
 
   it('renders the Likert items with the correct number of choices based on property', async () => {
-    let wrapper = shallow(<LikertGroup description = "Likert group description." numberOfChoices = "7"/>);
+    let wrapper = shallow(<LikertGroup numberOfChoices = "7"/>);
     await flushPromises();
 
     let item = wrapper
@@ -84,7 +87,7 @@ describe('LikertGroup component', () => {
       ]
     });
 
-    let wrapper = shallow(<LikertGroup description = "Likert group description." />);
+    let wrapper = shallow(<LikertGroup />);
     await flushPromises();
 
     wrapper.instance().selectionHandler(1, 3);
@@ -94,7 +97,7 @@ describe('LikertGroup component', () => {
   });
 
   it('saves survey data when the submit button is clicked', async () => {
-    let wrapper = shallow(<LikertGroup description = "Likert group description." />);
+    let wrapper = shallow(<LikertGroup />);
     await flushPromises();
 
     wrapper.setState({

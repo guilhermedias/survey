@@ -2,6 +2,7 @@
   "surveys": [
     {
       "id": 1,
+      "description": "Likert group description.",
       "items": [
         {
           "id": 1,

@@ -54,6 +54,7 @@ class LikertGroup extends React.Component {
 
     this.setState({
       id: survey.id,
+      description: survey.description,
       items: survey.items
     });
   }
@@ -79,7 +80,7 @@ class LikertGroup extends React.Component {
     return (
       <div className = "likert-group">
         <div className = "likert-group-description">
-          { this.props.description }
+          { this.state.description }
         </div>
 
         { items }

@@ -55,25 +55,20 @@ class LikertGroup extends React.Component {
     this.setState({
       id: survey.id,
       description: survey.description,
+      numberOfChoices: survey.numberOfChoices,
       items: survey.items
     });
   }
 
   render() {
     let items = this.state.items.map((item) => {
-      let optionalProps = {};
-
-      if(this.props.numberOfChoices) {
-        optionalProps.numberOfChoices = this.props.numberOfChoices;
-      }
-
       return <LikertItem
         id = { item.id }
         key = { item.id }
         statement = { item.statement }
         selected = { item.selected }
+        numberOfChoices = { this.state.numberOfChoices }
         selectionHandler = { this.selectionHandler.bind(this) }
-        { ...optionalProps }
       />
     });
 

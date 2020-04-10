@@ -15,6 +15,7 @@ describe('LikertGroup component', () => {
     SurveysAPI.getSurveyByID.mockResolvedValue({
       id: 1,
       description: 'Likert group description.',
+      numberOfChoices: 5,
       items: [
         {
           id: 1,
@@ -54,7 +55,7 @@ describe('LikertGroup component', () => {
     expect(items).toHaveLength(2);
   });
 
-  it('renders the Likert items with the correct number of default choices', async () => {
+  it('renders the Likert items with the correct number of choices', async () => {
     let wrapper = shallow(<LikertGroup />);
     await flushPromises();
 
@@ -62,18 +63,7 @@ describe('LikertGroup component', () => {
       .find(LikertItem)
       .first();
 
-    expect(item).not.toHaveProp('numberOfChoices');
-  });
-
-  it('renders the Likert items with the correct number of choices based on property', async () => {
-    let wrapper = shallow(<LikertGroup numberOfChoices = "7"/>);
-    await flushPromises();
-
-    let item = wrapper
-      .find(LikertItem)
-      .first();
-
-    expect(item).toHaveProp('numberOfChoices', '7');
+    expect(item).toHaveProp('numberOfChoices', 5);
   });
 
   it('updates its state when a choice is selected', async () => {

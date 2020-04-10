@@ -3,6 +3,7 @@
     {
       "id": 1,
       "description": "Likert group description.",
+      "numberOfChoices": 7,
       "items": [
         {
           "id": 1,

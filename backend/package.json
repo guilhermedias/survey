@@ -1,0 +1,15 @@
+{
+  "name": "survey-backend",
+  "version": "0.1.0",
+  "author": "Guilherme Dias",
+  "license": "MIT",
+  "private": true,
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo Ae"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

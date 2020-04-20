@@ -1,10 +1,9 @@
-import app from './index';
+import express from 'express';
+import surveys from './surveys';
 import supertest from 'supertest';
 
 describe('Survey controller', () => {
-  afterEach(() => {
-    app.close();
-  });
+  const app = express().use(surveys);
 
   it('serves survey information', async () => {
     await supertest(app)

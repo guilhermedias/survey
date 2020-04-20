@@ -7,6 +7,6 @@ app.get('/', (request, response) => {
   response.send('Ae');
 });
 
-app.listen(port, () => { 
+export default app.listen(port, () => { 
   console.log(`Survey backend listening at http://localhost:${port}`); 
 });

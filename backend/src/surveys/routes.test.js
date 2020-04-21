@@ -1,5 +1,5 @@
 import express from 'express';
-import surveys from './surveys';
+import surveys from './routes';
 import supertest from 'supertest';
 
 describe('Survey controller', () => {

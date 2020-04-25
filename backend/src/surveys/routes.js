@@ -1,5 +1,5 @@
 import express from 'express';
-import Survey from './surveyModel';
+import Survey from './surveyModel.js';
 
 const route = express();
 

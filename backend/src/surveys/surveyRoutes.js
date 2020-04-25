@@ -5,7 +5,7 @@ const route = express();
 
 route.get('/', async (request, response) => {
   let surveys = await Survey.find().exec();
-  return surveys;
+  response.send(surveys);
 });
 
 export default route;

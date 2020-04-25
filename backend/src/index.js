@@ -8,7 +8,7 @@ const port = process.env.BACKEND_PORT || 3004;
 const user = process.env.DATABASE_USERNAME || 'survey';
 const pass = process.env.DATABASE_PASSWORD || 'survey';
 
-app.use(surveys);
+app.use('/surveys', surveys);
 
 mongoose.connect(`mongodb://${user}:${pass}@localhost:27017/survey`, {
   useNewUrlParser: true

@@ -1,5 +1,5 @@
 import express from 'express';
-import surveys from './surveys/routes.js';
+import surveys from './surveys/surveyRoutes.js';
 
 const app = express();
 const port = process.env.BACKEND_PORT || 3004;

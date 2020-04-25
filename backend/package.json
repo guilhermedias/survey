@@ -6,21 +6,8 @@
   "private": true,
   "main": "index.js",
   "type": "module",
-  "scripts": {
-    "test": "jest",
-    "watch": "jest --watch"
-  },
-  "jest": {
-    "testEnvironment": "node"
-  },
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.9.10"
-  },
-  "devDependencies": {
-    "@babel/preset-env": "^7.9.5",
-    "babel-jest": "^25.4.0",
-    "jest": "^25.4.0",
-    "supertest": "^4.0.2"
   }
 }

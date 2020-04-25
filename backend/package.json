@@ -7,7 +7,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node --no-warnings src/index.js"
+    "start:server": "node --no-warnings src/index.js",
+    "start:db": "./scripts/database/start.sh",
+    "stop:db": "./scripts/database/stop.sh"
   },
   "dependencies": {
     "express": "^4.17.1",

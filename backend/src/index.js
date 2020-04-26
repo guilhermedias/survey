@@ -1,19 +1,32 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import surveys from './surveys/surveyRoutes.js';
+import PluginFactory from 'mongoose-sequence';
+import SurveyModel from './surveys/surveyModel.js';
+import SurveyRoutes from './surveys/surveyRoutes.js';
 
-const app = express();
-const port = process.env.BACKEND_PORT || 3004;
+(async () => {
+  const app = express();
+  const port = process.env.SERVER_PORT || 3004;
+  const databaseUsername = process.env.DATABASE_USERNAME || 'survey';
+  const databasePassword = process.env.DATABASE_PASSWORD || 'survey';
 
-const user = process.env.DATABASE_USERNAME || 'survey';
-const pass = process.env.DATABASE_PASSWORD || 'survey';
+  // Mongoose configuration
+  let databaseURL = `mongodb://${databaseUsername}:${databasePassword}@localhost:27017/survey`;
 
-app.use('/surveys', surveys);
+  let connection = await mongoose.connect(databaseURL, {
+    useNewUrlParser: true
+  });
 
-mongoose.connect(`mongodb://${user}:${pass}@localhost:27017/survey`, {
-  useNewUrlParser: true
-});
+  let autoIncrementPlugin = PluginFactory(connection);
 
-app.listen(port, () => {
-  console.log(`Survey backend listening at http://localhost:${port}`); 
-});
+  let surveyModel = SurveyModel(autoIncrementPlugin);
+
+  // Express configuration
+  let surveyRoutes = SurveyRoutes(surveyModel);
+
+  app.use('/surveys', surveyRoutes);
+
+  app.listen(port, () => {
+    console.log(`Survey backend listening at http://localhost:${port}`); 
+  });
+})();

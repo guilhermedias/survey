@@ -11,5 +11,5 @@ db.createCollection('surveys');
 db
   .getCollection('surveys')
   .insert({
-    id: 1
+    description: 'Survey description 1.'
   });

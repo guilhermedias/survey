@@ -20,8 +20,11 @@ export default (surveyModel) => {
   });
 
   routes.post('/', async (request, response) => {
-    console.log(request.body);
-    response.sendStatus(201);
+    let createdSurvey = await surveyModel.create(request.body);
+
+    response
+      .status(201)
+      .send(createdSurvey);
   });
 
   return routes;

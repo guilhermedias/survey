@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
 
-
 export default (autoIncrementPlugin) => {
-  let itemSchema = new mongoose.Schema({
+  let likertItemSchema = new mongoose.Schema({
     id: Number,
     statement: String
   });
@@ -11,7 +10,7 @@ export default (autoIncrementPlugin) => {
     id: Number,
     description: String,
     numberOfChoices: Number,
-    items: [ itemSchema ]
+    items: [ likertItemSchema ]
   });
 
   surveySchema.plugin(autoIncrementPlugin, {

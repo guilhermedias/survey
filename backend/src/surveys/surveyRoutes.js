@@ -1,5 +1,4 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 
 let filterInternalFields = (response) => {
   return JSON.parse(
@@ -11,8 +10,6 @@ let filterInternalFields = (response) => {
 
 export default (surveyModel) => {
   const routes = express();
-
-  routes.use(bodyParser.json());
 
   routes.get('/', async (request, response) => {
     let surveys = await surveyModel.find().exec();

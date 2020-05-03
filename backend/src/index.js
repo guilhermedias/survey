@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
 import PluginFactory from 'mongoose-sequence';
 import SurveyModel from './surveys/surveyModel.js';
 import SurveyRoutes from './surveys/surveyRoutes.js';
@@ -22,6 +23,8 @@ import SurveyRoutes from './surveys/surveyRoutes.js';
   let surveyModel = SurveyModel(autoIncrementPlugin);
 
   // Express configuration
+  app.use(bodyParser.json());
+
   app.use((request, response, next) => {
     response.header('Access-Control-Allow-Origin', '*');
     next();

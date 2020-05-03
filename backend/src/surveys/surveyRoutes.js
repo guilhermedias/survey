@@ -1,20 +1,12 @@
 import express from 'express';
 
-let filterInternalFields = (response) => {
-  return JSON.parse(
-    JSON.stringify(response, (key, value) =>
-      key.startsWith('_') ? undefined : value
-    )
-  );
-}
-
 export default (surveyModel) => {
   const routes = express();
 
   routes.get('/', async (request, response) => {
     let surveys = await surveyModel.find().exec();
 
-    response.send(filterInternalFields(surveys));
+    response.send(surveys);
   });
 
   routes.get('/:id', async (request, response) => {
@@ -22,7 +14,7 @@ export default (surveyModel) => {
       id: request.params.id
     }).exec();
 
-    response.send(filterInternalFields(survey));
+    response.send(survey);
   });
 
   routes.post('/', async (request, response) => {
@@ -30,7 +22,7 @@ export default (surveyModel) => {
 
     response
       .status(201)
-      .send(filterInternalFields(createdSurvey));
+      .send(createdSurvey);
   });
 
   return routes;

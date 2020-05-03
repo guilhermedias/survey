@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import PluginFactory from 'mongoose-sequence';
 import SurveyModel from './surveys/surveyModel.js';
 import SurveyRoutes from './surveys/surveyRoutes.js';
+import filterInternal from './middleware/filterInternal.js';
 
 (async () => {
   const app = express();
@@ -24,6 +25,8 @@ import SurveyRoutes from './surveys/surveyRoutes.js';
 
   // Express configuration
   app.use(bodyParser.json());
+
+  app.use(filterInternal);
 
   app.use((request, response, next) => {
     response.header('Access-Control-Allow-Origin', '*');

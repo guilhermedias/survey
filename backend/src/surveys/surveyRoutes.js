@@ -9,9 +9,8 @@ export default (surveyModel) => {
   });
 
   routes.get('/:id', async (request, response) => {
-    let survey = await surveyModel.findOne({
-      id: request.params.id
-    }).exec();
+    let id = request.params.id;
+    let survey = await surveyModel.findById(id).exec();
 
     response.send(survey);
   });

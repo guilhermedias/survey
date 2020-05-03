@@ -3,7 +3,10 @@ import mongoose from 'mongoose';
 
 export default (autoIncrementPlugin) => {
   let surveySchema = new mongoose.Schema({
+    _id: Number,
     description: String
+  }, {
+    _id: false
   });
 
   surveySchema.plugin(autoIncrementPlugin, {

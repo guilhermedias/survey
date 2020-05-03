@@ -22,6 +22,11 @@ import SurveyRoutes from './surveys/surveyRoutes.js';
   let surveyModel = SurveyModel(autoIncrementPlugin);
 
   // Express configuration
+  app.use((request, response, next) => {
+    response.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
+
   let surveyRoutes = SurveyRoutes(surveyModel);
 
   app.use('/surveys', surveyRoutes);

@@ -11,5 +11,17 @@ db.createCollection('surveys');
 db
   .getCollection('surveys')
   .insert({
-    description: 'Survey description 1.'
+    _id: NumberInt(1),
+    description: 'Survey description 1.',
+    numberOfChoices: NumberInt(7),
+    items: [
+      {
+        id: 1,
+        statement: 'Likert item statement 1.'
+      },
+      {
+        id: 2,
+        statement: 'Likert item statement 2.'
+      }
+    ]
   });

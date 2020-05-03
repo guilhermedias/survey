@@ -8,12 +8,10 @@ export default (autoIncrementPlugin) => {
   });
 
   let surveySchema = new mongoose.Schema({
-    _id: Number,
+    id: Number,
     description: String,
     numberOfChoices: Number,
     items: [ itemSchema ]
-  }, {
-    _id: false
   });
 
   surveySchema.plugin(autoIncrementPlugin, {

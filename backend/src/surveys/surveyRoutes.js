@@ -1,6 +1,14 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
+let filterInternalFields = (response) => {
+  return JSON.parse(
+    JSON.stringify(response, (key, value) =>
+      key.startsWith('_') ? undefined : value
+    )
+  );
+}
+
 export default (surveyModel) => {
   const routes = express();
 
@@ -8,7 +16,8 @@ export default (surveyModel) => {
 
   routes.get('/', async (request, response) => {
     let surveys = await surveyModel.find().exec();
-    response.send(surveys);
+
+    response.send(filterInternalFields(surveys));
   });
 
   routes.get('/:id', async (request, response) => {
@@ -16,7 +25,7 @@ export default (surveyModel) => {
       id: request.params.id
     }).exec();
 
-    response.send(survey);
+    response.send(filterInternalFields(survey));
   });
 
   routes.post('/', async (request, response) => {
@@ -24,7 +33,7 @@ export default (surveyModel) => {
 
     response
       .status(201)
-      .send(createdSurvey);
+      .send(filterInternalFields(createdSurvey));
   });
 
   return routes;

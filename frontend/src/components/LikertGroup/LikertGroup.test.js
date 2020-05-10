@@ -13,7 +13,7 @@ const flushPromises = () =>
 describe('LikertGroup component', () => {
   beforeAll(() => {
     SurveysAPI.getSurveyByID.mockResolvedValue({
-      id: 1,
+      surveyId: 1,
       description: 'Likert group description.',
       numberOfChoices: 5,
       items: [
@@ -68,7 +68,7 @@ describe('LikertGroup component', () => {
 
   it('updates its state when a choice is selected', async () => {
     SurveysAPI.getSurveyByID.mockResolvedValue({
-      id: 1,
+      surveyId: 1,
       items: [
         {
           id: 1,

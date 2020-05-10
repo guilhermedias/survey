@@ -2,8 +2,10 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import PluginFactory from 'mongoose-sequence';
-import SurveyModel from './surveys/surveyModel.js';
-import SurveyRoutes from './surveys/surveyRoutes.js';
+import SurveyModel from './domain/surveys/surveyModel.js';
+import SurveyRoutes from './domain/surveys/surveyRoutes.js';
+import SurveyDataModel from './domain/data/surveyDataModel.js';
+import SurveyDataRoutes from './domain/data/surveyDataRoutes.js';
 import filterInternal from './middleware/filterInternal.js';
 
 (async () => {
@@ -22,6 +24,7 @@ import filterInternal from './middleware/filterInternal.js';
   let autoIncrementPlugin = PluginFactory(connection);
 
   let surveyModel = SurveyModel(autoIncrementPlugin);
+  let surveyDataModel = SurveyDataModel(autoIncrementPlugin);
 
   // Express configuration
   app.use(bodyParser.json());
@@ -34,8 +37,10 @@ import filterInternal from './middleware/filterInternal.js';
   });
 
   let surveyRoutes = SurveyRoutes(surveyModel);
+  let surveyDataRoutes = SurveyDataRoutes(surveyDataModel);
 
   app.use('/surveys', surveyRoutes);
+  app.use('/data', surveyDataRoutes);
 
   app.listen(port, () => {
     console.log(`Survey backend listening at http://localhost:${port}`); 

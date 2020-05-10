@@ -53,7 +53,7 @@ class LikertGroup extends React.Component {
     let survey = await SurveysAPI.getSurveyByID(1);
 
     this.setState({
-      id: survey.id,
+      id: survey.surveyId,
       description: survey.description,
       numberOfChoices: survey.numberOfChoices,
       items: survey.items

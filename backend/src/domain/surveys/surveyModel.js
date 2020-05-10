@@ -7,14 +7,14 @@ export default (autoIncrementPlugin) => {
   });
 
   let surveySchema = new mongoose.Schema({
-    id: Number,
+    surveyId: Number,
     description: String,
     numberOfChoices: Number,
     items: [ likertItemSchema ]
   });
 
   surveySchema.plugin(autoIncrementPlugin, {
-    inc_field: 'id'
+    inc_field: 'surveyId'
   });
 
   return mongoose.model('Survey', surveySchema);

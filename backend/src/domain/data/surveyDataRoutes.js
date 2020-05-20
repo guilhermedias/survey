@@ -4,7 +4,13 @@ export default (surveyDataModel) => {
   const routes = express();
 
   routes.get('/', async (request, response) => {
-    let surveysData = await surveyDataModel.find().exec();
+    let filter = {};
+
+    if(request.query.surveyId) {
+      filter.surveyId = request.query.surveyId;
+    }
+
+    let surveysData = await surveyDataModel.find(filter).exec();
 
     response.send(surveysData);
   });

@@ -25,5 +25,15 @@ export default (surveyModel) => {
       .send(createdSurvey);
   });
 
+  routes.delete('/:id', async (request, response) => {
+    await surveyModel.deleteOne({
+      surveyId: request.params.id
+    }).exec();
+
+    response
+      .status(204)
+      .send();
+  });
+
   return routes;
 };

@@ -64,10 +64,14 @@ export default (surveyDataModel) => {
       surveyDataId: request.params.id
     };
 
-    await surveyDataModel.deleteOne(query).exec();
+    let result = await surveyDataModel.deleteOne(query).exec();
+
+    let statusCode = result.n > 0
+      ? 204
+      : 404;
 
     response
-      .status(204)
+      .status(statusCode)
       .send();
   });
 

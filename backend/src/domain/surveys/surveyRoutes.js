@@ -3,6 +3,16 @@ import express from 'express';
 export default (surveyModel) => {
   const routes = express();
 
+  routes.post('/', async (request, response) => {
+    let newSurvey = request.body;
+
+    let createdSurvey = await surveyModel.create(newSurvey);
+
+    response
+      .status(201)
+      .send(createdSurvey);
+  });
+
   routes.get('/', async (request, response) => {
     let surveys = await surveyModel.find().exec();
 
@@ -10,19 +20,13 @@ export default (surveyModel) => {
   });
 
   routes.get('/:id', async (request, response) => {
-    let survey = await surveyModel.findOne({
+    let query = {
       surveyId: request.params.id
-    }).exec();
+    };
+
+    let survey = await surveyModel.findOne(query).exec();
 
     response.send(survey);
-  });
-
-  routes.post('/', async (request, response) => {
-    let createdSurvey = await surveyModel.create(request.body);
-
-    response
-      .status(201)
-      .send(createdSurvey);
   });
 
   routes.put('/:id', async (request, response) => {
@@ -44,9 +48,11 @@ export default (surveyModel) => {
   });
 
   routes.delete('/:id', async (request, response) => {
-    await surveyModel.deleteOne({
+    let query = {
       surveyId: request.params.id
-    }).exec();
+    };
+
+    await surveyModel.deleteOne(query).exec();
 
     response
       .status(204)

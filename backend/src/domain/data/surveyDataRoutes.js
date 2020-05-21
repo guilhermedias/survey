@@ -32,7 +32,13 @@ export default (surveyDataModel) => {
 
     let surveyData = await surveyDataModel.findOne(query).exec();
 
-    response.send(surveyData);
+    let statusCode = surveyData
+      ? 200
+      : 404;
+
+    response
+      .status(statusCode)
+      .send(surveyData);
   });
 
   routes.put('/:id', async (request, response) => {

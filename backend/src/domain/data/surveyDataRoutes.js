@@ -35,6 +35,24 @@ export default (surveyDataModel) => {
     response.send(surveyData);
   });
 
+  routes.put('/:id', async (request, response) => {
+    let query = {
+      surveyDataId: request.params.id
+    };
+
+    let newSurveyData = request.body;
+
+    let result = await surveyDataModel.updateOne(query, newSurveyData).exec();
+
+    let statusCode = result.nModified > 0
+      ? 204
+      : 404;
+
+    response
+      .status(statusCode)
+      .send();
+  });
+
   routes.delete('/:id', async (request, response) => {
     let query = {
       surveyDataId: request.params.id

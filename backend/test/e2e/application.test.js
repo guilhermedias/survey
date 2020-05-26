@@ -95,4 +95,14 @@ describe('The survey application', () => {
       }
     ]));
   });
+
+  it('returns 404 Not Found when the ID does not exist', async () => {
+    try {
+      await axios.get('htpp://localhost:3004/surveys/2');
+      fail();
+    } catch(error) {
+      expect(error.response.status).toBe(404);
+      expect(error.response.data).toBe('');
+    }
+  });
 });

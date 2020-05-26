@@ -71,4 +71,28 @@ describe('The survey application', () => {
       }
     ]));
   });
+
+  it('gets survey by ID', async () => {
+    let response = await axios.get('htpp://localhost:3004/surveys/1');
+
+    expect(response.status).toBe(200);
+
+    let survey = response.data;
+    expect(survey.surveyId).toBe(1);
+    expect(survey.description).toBe('Survey 1.');
+    expect(survey.numberOfChoices).toBe(5);
+    expect(survey.items).toHaveLength(2);
+
+    let items = survey.items;
+    expect(items).toEqual(expect.arrayContaining([
+      {
+        id: 1,
+        statement: 'Statement 1.'
+      },
+      {
+        id: 2,
+        statement: 'Statement 2.'
+      }
+    ]));
+  });
 });

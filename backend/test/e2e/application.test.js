@@ -107,20 +107,9 @@ describe('The survey application', () => {
   });
 
   it('updates survey by ID', async () => {
-    let response = await axios.post('http://localhost:3004/surveys', {
-      "description": "Survey.",
-      "numberOfChoices": 5,
-      "items": [
-        {
-          "id": 1,
-          "statement": "Statement 1."
-        }
-      ]
-    });
+    let surveyId = await createSurveyWithDefaultValues();
 
-    let surveyId = response.data.surveyId;
-
-    response = await axios.put(`http://localhost:3004/surveys/${surveyId}`, {
+    let response = await axios.put(`http://localhost:3004/surveys/${surveyId}`, {
       "description": "Updated survey.",
       "numberOfChoices": 5,
       "items": [
@@ -170,20 +159,9 @@ describe('The survey application', () => {
   });
 
   it('deletes survey by ID', async () => {
-    let response = await axios.post('http://localhost:3004/surveys', {
-      "description": "Survey.",
-      "numberOfChoices": 5,
-      "items": [
-        {
-          "id": 1,
-          "statement": "Statement 1."
-        }
-      ]
-    });
+    let surveyId = await createSurveyWithDefaultValues();
 
-    let surveyId = response.data.surveyId;
-
-    response = await axios.delete(`http://localhost:3004/surveys/${surveyId}`);
+    let response = await axios.delete(`http://localhost:3004/surveys/${surveyId}`);
 
     expect(response.status).toBe(204);
     expect(response.data).toBe('');
@@ -206,3 +184,18 @@ describe('The survey application', () => {
     }
   });
 });
+
+async function createSurveyWithDefaultValues() {
+  let response = await axios.post('http://localhost:3004/surveys', {
+    "description": "Survey.",
+    "numberOfChoices": 5,
+    "items": [
+      {
+        "id": 1,
+        "statement": "Statement 1."
+      }
+    ]
+  });
+
+  return response.data.surveyId;
+}

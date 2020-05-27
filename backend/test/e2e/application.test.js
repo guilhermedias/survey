@@ -20,7 +20,7 @@ describe('The survey application', () => {
   });
 
   it('creates a survey', async () => {
-    let response = await axios.post('htpp://localhost:3004/surveys', {
+    let response = await axios.post('http://localhost:3004/surveys', {
       "description": "Survey.",
       "numberOfChoices": 5,
       "items": [
@@ -48,7 +48,7 @@ describe('The survey application', () => {
   });
 
   it('gets all surveys', async () => {
-    let response = await axios.get('htpp://localhost:3004/surveys');
+    let response = await axios.get('http://localhost:3004/surveys');
 
     expect(response.status).toBe(200);
     expect(response.data).toHaveLength(1);
@@ -73,7 +73,7 @@ describe('The survey application', () => {
   });
 
   it('gets survey by ID', async () => {
-    let response = await axios.get('htpp://localhost:3004/surveys/1');
+    let response = await axios.get('http://localhost:3004/surveys/1');
 
     expect(response.status).toBe(200);
 
@@ -98,7 +98,7 @@ describe('The survey application', () => {
 
   it('returns 404 Not Found when the ID does not exist', async () => {
     try {
-      await axios.get('htpp://localhost:3004/surveys/2');
+      await axios.get('http://localhost:3004/surveys/2');
       fail();
     } catch(error) {
       expect(error.response.status).toBe(404);

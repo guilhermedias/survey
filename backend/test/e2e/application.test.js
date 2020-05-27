@@ -195,4 +195,14 @@ describe('The survey application', () => {
       expect(error.response.data).toBe('');
     }
   });
+
+  it('returns 404 Not Found when trying to delete a nonexisting survey', async () => {
+    try {
+      response = await axios.delete('http://localhost:3004/surveys/2');
+      fail();
+    } catch(error) {
+      expect(error.response.status).toBe(404);
+      expect(error.response.data).toBe('');
+    }
+  });
 });

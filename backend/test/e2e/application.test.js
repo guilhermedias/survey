@@ -168,4 +168,31 @@ describe('The survey application', () => {
       expect(error.response.data).toBe('');
     }
   });
+
+  it('deletes survey by ID', async () => {
+    let response = await axios.post('http://localhost:3004/surveys', {
+      "description": "Survey.",
+      "numberOfChoices": 5,
+      "items": [
+        {
+          "id": 1,
+          "statement": "Statement 1."
+        }
+      ]
+    });
+
+    let surveyId = response.data.surveyId;
+
+    response = await axios.delete(`http://localhost:3004/surveys/${surveyId}`);
+
+    expect(response.status).toBe(204);
+    expect(response.data).toBe('');
+
+    try {
+      response = await axios.get(`http://localhost:3004/surveys/${surveyId}`);
+    } catch(error) {
+      expect(error.response.status).toBe(404);
+      expect(error.response.data).toBe('');
+    }
+  });
 });

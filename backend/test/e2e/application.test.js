@@ -96,7 +96,7 @@ describe('The survey application', () => {
     ]));
   });
 
-  it('returns 404 Not Found when the ID does not exist', async () => {
+  it('returns 404 Not Found when trying to retrieve a nonexisting survey', async () => {
     try {
       await axios.get('http://localhost:3004/surveys/2');
       fail();
@@ -106,7 +106,7 @@ describe('The survey application', () => {
     }
   });
 
-  it('updates an existing survey', async () => {
+  it('updates survey by ID', async () => {
     let response = await axios.post('http://localhost:3004/surveys', {
       "description": "Survey.",
       "numberOfChoices": 5,
@@ -148,5 +148,24 @@ describe('The survey application', () => {
         statement: 'Statement 1.'
       }
     ]));
+  });
+
+  it('returns 404 Not Found when trying to update a nonexisting survey', async () => {
+    try {
+      response = await axios.put('http://localhost:3004/surveys/2', {
+        "description": "Updated survey.",
+        "numberOfChoices": 5,
+        "items": [
+          {
+            "id": 1,
+            "statement": "Statement 1."
+          }
+        ]
+      });
+      fail();
+    } catch(error) {
+      expect(error.response.status).toBe(404);
+      expect(error.response.data).toBe('');
+    }
   });
 });

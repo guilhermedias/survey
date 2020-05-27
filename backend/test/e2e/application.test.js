@@ -105,4 +105,48 @@ describe('The survey application', () => {
       expect(error.response.data).toBe('');
     }
   });
+
+  it('updates an existing survey', async () => {
+    let response = await axios.post('http://localhost:3004/surveys', {
+      "description": "Survey.",
+      "numberOfChoices": 5,
+      "items": [
+        {
+          "id": 1,
+          "statement": "Statement 1."
+        }
+      ]
+    });
+
+    let surveyId = response.data.surveyId;
+
+    response = await axios.put(`http://localhost:3004/surveys/${surveyId}`, {
+      "description": "Updated survey.",
+      "numberOfChoices": 5,
+      "items": [
+        {
+          "id": 1,
+          "statement": "Statement 1."
+        }
+      ]
+    });
+
+    expect(response.status).toBe(204);
+    expect(response.data).toBe('');
+
+    response = await axios.get(`http://localhost:3004/surveys/${surveyId}`);
+
+    let survey = response.data;
+    expect(survey.description).toBe('Updated survey.');
+    expect(survey.numberOfChoices).toBe(5);
+    expect(survey.items).toHaveLength(1);
+
+    let items = survey.items;
+    expect(items).toEqual(expect.arrayContaining([
+      {
+        id: 1,
+        statement: 'Statement 1.'
+      }
+    ]));
+  });
 });

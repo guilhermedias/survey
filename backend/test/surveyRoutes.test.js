@@ -1,7 +1,7 @@
 import axios from 'axios';
 import mongoose from 'mongoose';
 
-describe('The survey application', () => {
+describe('The survey routes group', () => {
   beforeAll(async () => {
     await mongoose.connect(
       'mongodb://survey:survey@localhost:27017/survey', {
@@ -57,10 +57,10 @@ describe('The survey application', () => {
     expect(response.data).toHaveLength(1);
 
     let survey = response.data[0];
-    expect(survey.surveyId).toBe(1);
     expect(survey.description).toBe('Survey 1.');
     expect(survey.numberOfChoices).toBe(5);
     expect(survey.items).toHaveLength(2);
+    expect(survey.surveyId).toBe(1);
 
     let items = survey.items;
     expect(items).toEqual(expect.arrayContaining([
@@ -81,10 +81,10 @@ describe('The survey application', () => {
     expect(response.status).toBe(200);
 
     let survey = response.data;
-    expect(survey.surveyId).toBe(1);
     expect(survey.description).toBe('Survey 1.');
     expect(survey.numberOfChoices).toBe(5);
     expect(survey.items).toHaveLength(2);
+    expect(survey.surveyId).toBe(1);
 
     let items = survey.items;
     expect(items).toEqual(expect.arrayContaining([

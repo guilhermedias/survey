@@ -5,7 +5,10 @@ describe('The survey application', () => {
   beforeAll(async () => {
     await mongoose.connect(
       'mongodb://survey:survey@localhost:27017/survey', {
-        useNewUrlParser: true
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+        useNewUrlParser: true,
+        useCreateIndex: true
       });
   });
 

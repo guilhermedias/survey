@@ -18,7 +18,10 @@ import filterInternal from './middleware/filterInternal.js';
   let databaseURL = `mongodb://${databaseUsername}:${databasePassword}@localhost:27017/survey`;
 
   let connection = await mongoose.connect(databaseURL, {
-    useNewUrlParser: true
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useNewUrlParser: true,
+    useCreateIndex: true
   });
 
   let autoIncrementPlugin = PluginFactory(connection);

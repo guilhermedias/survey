@@ -92,6 +92,28 @@ describe('The survey data routes group', () => {
     ]));
   });
 
+  it('gets all survey data associated with a specific survey', async () => {
+    let surveyDataId = await createSurveyDataWithDefaultValues();
+
+    let response = await axios.get('http://localhost:3004/data?surveyId=2');
+
+    expect(response.status).toBe(200);
+    expect(response.data).toHaveLength(1);
+
+    let surveyData = response.data[0];
+    expect(surveyData.surveyId).toBe(2);
+    expect(surveyData.items).toHaveLength(1);
+    expect(surveyData.surveyDataId).toBe(surveyDataId);
+
+    let items = surveyData.items;
+    expect(items).toEqual(expect.arrayContaining([
+      {
+        id: 1,
+        selected: 4
+      }
+    ]));
+  });
+
   it('gets survey data by ID', async () => {
     let response = await axios.get('http://localhost:3004/data/1');
 
@@ -125,7 +147,7 @@ describe('The survey data routes group', () => {
     let surveyDataId = await createSurveyDataWithDefaultValues();
 
     let response = await axios.put(`http://localhost:3004/data/${surveyDataId}`, {
-      "surveyId": 1,
+      "surveyId": 2,
       "items": [
         {
           "id": 1,
@@ -140,7 +162,7 @@ describe('The survey data routes group', () => {
     response = await axios.get(`http://localhost:3004/data/${surveyDataId}`);
 
     let surveyData = response.data;
-    expect(surveyData.surveyId).toBe(1);
+    expect(surveyData.surveyId).toBe(2);
     expect(surveyData.items).toHaveLength(1);
 
     let items = surveyData.items;
@@ -188,7 +210,7 @@ describe('The survey data routes group', () => {
 
 async function createSurveyDataWithDefaultValues() {
   let response = await axios.post('http://localhost:3004/data', {
-    "surveyId": 1,
+    "surveyId": 2,
     "items": [
       {
         "id": 1,

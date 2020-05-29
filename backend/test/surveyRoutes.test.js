@@ -14,7 +14,7 @@ describe('The survey application', () => {
   });
 
   afterEach(async () => {
-    mongoose.connection.collection('surveys').deleteMany({
+    await mongoose.connection.collection('surveys').deleteMany({
       surveyId: { $ne: 1 }
     });
   });
@@ -97,13 +97,9 @@ describe('The survey application', () => {
   });
 
   it('returns 404 Not Found when trying to retrieve a nonexisting survey', async () => {
-    try {
+    assertThatItThrows404NotFound(async () => {
       await axios.get('http://localhost:3004/surveys/2');
-      fail();
-    } catch(error) {
-      expect(error.response.status).toBe(404);
-      expect(error.response.data).toBe('');
-    }
+    });
   });
 
   it('updates survey by ID', async () => {
@@ -140,8 +136,8 @@ describe('The survey application', () => {
   });
 
   it('returns 404 Not Found when trying to update a nonexisting survey', async () => {
-    try {
-      response = await axios.put('http://localhost:3004/surveys/2', {
+    assertThatItThrows404NotFound(async () => {
+      await axios.put('http://localhost:3004/surveys/2', {
         "description": "Updated survey.",
         "numberOfChoices": 5,
         "items": [
@@ -151,11 +147,7 @@ describe('The survey application', () => {
           }
         ]
       });
-      fail();
-    } catch(error) {
-      expect(error.response.status).toBe(404);
-      expect(error.response.data).toBe('');
-    }
+    });
   });
 
   it('deletes survey by ID', async () => {
@@ -166,22 +158,15 @@ describe('The survey application', () => {
     expect(response.status).toBe(204);
     expect(response.data).toBe('');
 
-    try {
-      response = await axios.get(`http://localhost:3004/surveys/${surveyId}`);
-    } catch(error) {
-      expect(error.response.status).toBe(404);
-      expect(error.response.data).toBe('');
-    }
+    assertThatItThrows404NotFound(async () => {
+      await axios.get(`http://localhost:3004/surveys/${surveyId}`);
+    });
   });
 
   it('returns 404 Not Found when trying to delete a nonexisting survey', async () => {
-    try {
-      response = await axios.delete('http://localhost:3004/surveys/2');
-      fail();
-    } catch(error) {
-      expect(error.response.status).toBe(404);
-      expect(error.response.data).toBe('');
-    }
+    assertThatItThrows404NotFound(async () => {
+      await axios.delete('http://localhost:3004/surveys/2');
+    });
   });
 });
 
@@ -198,4 +183,14 @@ async function createSurveyWithDefaultValues() {
   });
 
   return response.data.surveyId;
+}
+
+async function assertThatItThrows404NotFound(httpRequestCodeBlock) {
+  try {
+    await httpRequestCodeBlock();
+    fail('Expected 404 Not Found, but request suceeded');
+  } catch(error) {
+    expect(error.response.status).toBe(404);
+    expect(error.response.data).toBe('');
+  }
 }

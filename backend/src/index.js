@@ -7,6 +7,7 @@ import SurveyRoutes from './domain/surveys/surveyRoutes.js';
 import SurveyDataModel from './domain/data/surveyDataModel.js';
 import SurveyDataRoutes from './domain/data/surveyDataRoutes.js';
 import filterInternal from './middleware/filterInternal.js';
+import validators from './middleware/validators.js';
 
 (async () => {
   const app = express();
@@ -33,6 +34,7 @@ import filterInternal from './middleware/filterInternal.js';
   app.use(bodyParser.json());
 
   app.use(filterInternal);
+  app.use(validators);
 
   app.use((request, response, next) => {
     response.header('Access-Control-Allow-Origin', '*');

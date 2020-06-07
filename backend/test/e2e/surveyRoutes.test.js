@@ -50,6 +50,30 @@ describe('The survey routes group', () => {
     ]));
   });
 
+  it('applies the validation', async () => {
+    let response = await captureHttpErrorResponse(async () => {
+      await axios.post('http://localhost:3004/surveys', {
+        "numberOfChoices": 5,
+        "items": [
+          {
+            "id": 1,
+            "statement": "Statement 1."
+          }
+        ]
+      });
+    });
+
+    expect(response.status).toBe(400);
+
+    let errors = response.data.errors;
+    expect(errors).toEqual(expect.arrayContaining([
+      {
+        path: 'description',
+        message: 'Survey description is required.'
+      }
+    ]));
+  });
+
   it('gets all surveys', async () => {
     let response = await axios.get('http://localhost:3004/surveys');
 
@@ -188,12 +212,17 @@ async function createSurveyWithDefaultValues() {
   return response.data.surveyId;
 }
 
-async function assertThatItThrows404NotFound(httpRequestCodeBlock) {
+async function captureHttpErrorResponse(httpRequestCodeBlock) {
   try {
     await httpRequestCodeBlock();
-    fail('Expected 404 Not Found, but request suceeded');
+    fail('Expected error response, but request suceeded');
   } catch(error) {
-    expect(error.response.status).toBe(404);
-    expect(error.response.data).toBe('');
+    return error.response;
   }
+}
+
+async function assertThatItThrows404NotFound(httpRequestCodeBlock) {
+  let response = await captureHttpErrorResponse(httpRequestCodeBlock);
+  expect(response.status).toBe(404);
+  expect(response.data).toBe('');
 }

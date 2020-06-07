@@ -31,11 +31,11 @@ db
     '__v' : NumberInt(0)
   });
 
-// Survey Data
-db.createCollection('surveyData');
+// Answers
+db.createCollection('answers');
 
 db
-  .getCollection('surveyData')
+  .getCollection('answers')
   .insert(
     [
       {
@@ -53,7 +53,7 @@ db
             'selected' : NumberInt(5)
           }
         ],
-        'surveyDataId' : NumberInt(1),
+        'answerId' : NumberInt(1),
         '__v' : NumberInt(0)
       },
       {
@@ -71,7 +71,7 @@ db
             'selected' : NumberInt(5)
           }
         ],
-        'surveyDataId' : NumberInt(2),
+        'answerId' : NumberInt(2),
         '__v' : NumberInt(0)
       }
     ]
@@ -92,7 +92,7 @@ db
       },
       {
         '_id' : new ObjectId('5eb886fdbd394d6096665468'),
-        'id' : 'surveyDataId',
+        'id' : 'answerId',
         'reference_value' : null,
         'seq' : NumberInt(2)
       }

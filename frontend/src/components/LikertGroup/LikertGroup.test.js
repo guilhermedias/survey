@@ -86,7 +86,7 @@ describe('LikertGroup component', () => {
     expect(selected).toBe(3);
   });
 
-  it('saves survey data when the submit button is clicked', async () => {
+  it('saves answer when the submit button is clicked', async () => {
     let wrapper = shallow(<LikertGroup />);
     await flushPromises();
 
@@ -109,7 +109,7 @@ describe('LikertGroup component', () => {
       .find(SubmitButton)
       .simulate('click');
 
-    expect(SurveysAPI.saveSurveyData).toHaveBeenCalledWith({
+    expect(SurveysAPI.saveAnswer).toHaveBeenCalledWith({
       surveyId: 1,
       items: [
         {

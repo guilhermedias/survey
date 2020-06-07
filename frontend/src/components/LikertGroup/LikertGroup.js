@@ -34,19 +34,19 @@ class LikertGroup extends React.Component {
   }
 
   async submissionHandler() {
-    let surveyDataItems = this.state.items.map((item) => {
+    let answerItems = this.state.items.map((item) => {
       return {
         id: item.id,
         selected: item.selected
       };
     });
 
-    let surveyData = {
+    let answer = {
       surveyId: this.state.id,
-      items: surveyDataItems
+      items: answerItems
     };
 
-    await SurveysAPI.saveSurveyData(surveyData);
+    await SurveysAPI.saveAnswer(answer);
   }
 
   async componentDidMount() {

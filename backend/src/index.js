@@ -1,11 +1,14 @@
 import express from 'express';
+
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
 import PluginFactory from 'mongoose-sequence';
+
 import SurveyModel from './domain/surveys/surveyModel.js';
 import SurveyRoutes from './domain/surveys/surveyRoutes.js';
-import SurveyDataModel from './domain/data/surveyDataModel.js';
-import SurveyDataRoutes from './domain/data/surveyDataRoutes.js';
+import AnswerModel from './domain/answers/answerModel.js';
+import AnswerRoutes from './domain/answers/answerRoutes.js';
+
+import bodyParser from 'body-parser';
 import corsHeaders from './middleware/corsHeaders.js';
 import validators from './middleware/validators.js';
 import hideFields from './middleware/hideFields.js';
@@ -29,20 +32,19 @@ import hideFields from './middleware/hideFields.js';
   let autoIncrementPlugin = PluginFactory(connection);
 
   let surveyModel = SurveyModel(autoIncrementPlugin);
-  let surveyDataModel = SurveyDataModel(autoIncrementPlugin);
-
   let surveyRoutes = SurveyRoutes(surveyModel);
-  let surveyDataRoutes = SurveyDataRoutes(surveyDataModel);
+
+  let answerModel = AnswerModel(autoIncrementPlugin);
+  let answerRoutes = AnswerRoutes(answerModel);
 
   // Middleware configuration
   app.use(bodyParser.json());
-
   app.use(corsHeaders);
   app.use(validators);
   app.use(hideFields);
 
   app.use('/surveys', surveyRoutes);
-  app.use('/data', surveyDataRoutes);
+  app.use('/answers', answerRoutes);
 
   app.listen(port, () => {
     console.log(`Survey backend listening at http://localhost:${port}`); 

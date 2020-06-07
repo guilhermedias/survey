@@ -7,8 +7,8 @@ class SurveysAPI {
     return response.data;
   }
 
-  static async saveSurveyData(surveyData) {
-    let response = await axios.post(`${baseURL}/data`, surveyData);
+  static async saveAnswer(answer) {
+    let response = await axios.post(`${baseURL}/answers`, answer);
     return response.data;
   }
 }

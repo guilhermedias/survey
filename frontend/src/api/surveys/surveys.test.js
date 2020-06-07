@@ -18,9 +18,9 @@ describe('Surveys API', () => {
     expect(survey.id).toEqual(1);
   });
 
-  it('saves survey data in backend', async () => {
-    let surveyData = {
-      id: 1,
+  it('saves answer in backend', async () => {
+    let answer = {
+      surveyId: 1,
       items: [
         {
           id: 1,
@@ -35,13 +35,13 @@ describe('Surveys API', () => {
 
     axios.post.mockResolvedValue({
       data: {
-        id: 1
+        answerId: 1
       }
     });
 
-    let response = await SurveysAPI.saveSurveyData(surveyData);
+    let response = await SurveysAPI.saveAnswer(answer);
 
-    expect(axios.post).toHaveBeenCalledWith('base.url.com/data', surveyData);
-    expect(response.id).toEqual(1);
+    expect(axios.post).toHaveBeenCalledWith('base.url.com/answers', answer);
+    expect(response.answerId).toEqual(1);
   });
 });

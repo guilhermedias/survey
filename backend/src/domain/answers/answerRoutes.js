@@ -1,16 +1,16 @@
 import express from 'express';
 
-export default (surveyDataModel) => {
+export default (answerModel) => {
   const routes = express();
 
   routes.post('/', async (request, response) => {
-    let newSurveyData = request.body;
+    let newAnswer = request.body;
 
-    let createdSurveyData = await surveyDataModel.create(newSurveyData);
+    let createdAnswer = await answerModel.create(newAnswer);
 
     response
       .status(201)
-      .send(createdSurveyData);
+      .send(createdAnswer);
   });
 
   routes.get('/', async (request, response) => {
@@ -20,35 +20,35 @@ export default (surveyDataModel) => {
       filter.surveyId = request.query.surveyId;
     }
 
-    let surveysData = await surveyDataModel.find(filter).exec();
+    let answers = await answerModel.find(filter).exec();
 
-    response.send(surveysData);
+    response.send(answers);
   });
 
   routes.get('/:id', async (request, response) => {
     let query = {
-      surveyDataId: request.params.id
+      answerId: request.params.id
     };
 
-    let surveyData = await surveyDataModel.findOne(query).exec();
+    let answer = await answerModel.findOne(query).exec();
 
-    let statusCode = surveyData
+    let statusCode = answer
       ? 200
       : 404;
 
     response
       .status(statusCode)
-      .send(surveyData);
+      .send(answer);
   });
 
   routes.put('/:id', async (request, response) => {
     let query = {
-      surveyDataId: request.params.id
+      answerId: request.params.id
     };
 
-    let newSurveyData = request.body;
+    let newAnswer = request.body;
 
-    let result = await surveyDataModel.updateOne(query, newSurveyData).exec();
+    let result = await answerModel.updateOne(query, newAnswer).exec();
 
     let statusCode = result.nModified > 0
       ? 204
@@ -61,10 +61,10 @@ export default (surveyDataModel) => {
 
   routes.delete('/:id', async (request, response) => {
     let query = {
-      surveyDataId: request.params.id
+      answerId: request.params.id
     };
 
-    let result = await surveyDataModel.deleteOne(query).exec();
+    let result = await answerModel.deleteOne(query).exec();
 
     let statusCode = result.n > 0
       ? 204

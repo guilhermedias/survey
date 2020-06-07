@@ -6,8 +6,9 @@ import SurveyModel from './domain/surveys/surveyModel.js';
 import SurveyRoutes from './domain/surveys/surveyRoutes.js';
 import SurveyDataModel from './domain/data/surveyDataModel.js';
 import SurveyDataRoutes from './domain/data/surveyDataRoutes.js';
-import filterInternal from './middleware/filterInternal.js';
+import corsHeaders from './middleware/corsHeaders.js';
 import validators from './middleware/validators.js';
+import hideFields from './middleware/hideFields.js';
 
 (async () => {
   const app = express();
@@ -30,20 +31,15 @@ import validators from './middleware/validators.js';
   let surveyModel = SurveyModel(autoIncrementPlugin);
   let surveyDataModel = SurveyDataModel(autoIncrementPlugin);
 
-  // Express configuration
-  app.use(bodyParser.json());
-
-  app.use(filterInternal);
-  app.use(validators);
-
-  app.use((request, response, next) => {
-    response.header('Access-Control-Allow-Origin', '*');
-    response.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-  });
-
   let surveyRoutes = SurveyRoutes(surveyModel);
   let surveyDataRoutes = SurveyDataRoutes(surveyDataModel);
+
+  // Middleware configuration
+  app.use(bodyParser.json());
+
+  app.use(corsHeaders);
+  app.use(validators);
+  app.use(hideFields);
 
   app.use('/surveys', surveyRoutes);
   app.use('/data', surveyDataRoutes);

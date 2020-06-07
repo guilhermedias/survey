@@ -1,6 +1,6 @@
 import mung from 'express-mung';
 
-let filterInternalFields = (responseBody) => {
+let hideInternalFields = (responseBody) => {
   return JSON.parse(
     JSON.stringify(responseBody, (key, value) =>
       key.startsWith('_') ? undefined : value
@@ -9,5 +9,5 @@ let filterInternalFields = (responseBody) => {
 }
 
 export default mung.json((responseBody, request, response) => {
-  return filterInternalFields(responseBody);
+  return hideInternalFields(responseBody);
 });

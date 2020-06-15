@@ -14,6 +14,36 @@ export default [
         });
       }
 
+      if(!request.body.numberOfChoices) {
+        errors.push({
+          path: 'numberOfChoices',
+          message: 'Number of choices is required.'
+        });
+      }
+
+      if(!request.body.items) {
+        errors.push({
+          path: 'items',
+          message: 'Survey items are required.'
+        });
+      } else {
+        request.body.items.forEach((item, index) => {
+          if(!item.id) {
+            errors.push({
+              path: `items[${index}].id`,
+              message: 'Survey item ID is required.'
+            });
+          }
+
+          if(!item.statement) {
+            errors.push({
+              path: `items[${index}].statement`,
+              message: 'Survey item statement is required.'
+            });
+          }
+        });
+      }
+
       return errors;
     }
   }

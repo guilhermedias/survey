@@ -98,12 +98,118 @@ describe('The survey validation module', () => {
       message: 'Survey item statement is required.'
     });
   });
+
+  it('validates the description in the update survey request body', () => {
+    let request = buildUpdateSurveyRequest({
+      'numberOfChoices': 5,
+      'items': [
+        {
+          'id': 1,
+          'statement': 'Statement 1.'
+        }
+      ]
+    });
+
+    let errors = applyMatchingValidatorsTo(request);
+
+    assertThatErrorsContainsExactly(errors, {
+      path: 'description',
+      message: 'Survey description is required.'
+    });
+  });
+
+  it('validates the number of choices in the update survey request body', () => {
+    let request = buildUpdateSurveyRequest({
+      'description': 'Survey 1.',
+      'items': [
+        {
+          'id': 1,
+          'statement': 'Statement 1.'
+        }
+      ]
+    });
+
+    let errors = applyMatchingValidatorsTo(request);
+
+    assertThatErrorsContainsExactly(errors, {
+      path: 'numberOfChoices',
+      message: 'Number of choices is required.'
+    });
+  });
+
+  it('validates the items in the update survey request body', () => {
+    let request = buildUpdateSurveyRequest({
+      'description': 'Survey 1.',
+      'numberOfChoices': 5
+    });
+
+    let errors = applyMatchingValidatorsTo(request);
+
+    assertThatErrorsContainsExactly(errors, {
+      path: 'items',
+      message: 'Survey items are required.'
+    });
+  });
+
+  it('validates the item ID in the update survey request body', () => {
+    let request = buildUpdateSurveyRequest({
+      'description': 'Survey 1.',
+      'numberOfChoices': 5,
+      'items': [
+        {
+          'statement': 'Statement 1.'
+        },
+        {
+          'id': 2,
+          'statement': 'Statement 2.'
+        }
+      ]
+    });
+
+    let errors = applyMatchingValidatorsTo(request);
+
+    assertThatErrorsContainsExactly(errors, {
+      path: 'items[0].id',
+      message: 'Survey item ID is required.'
+    });
+  });
+
+  it('validates the item statement in the update survey request body', () => {
+    let request = buildUpdateSurveyRequest({
+      'description': 'Survey 1.',
+      'numberOfChoices': 5,
+      'items': [
+        {
+          'id': 1,
+          'statement': 'Statement 1.'
+        },
+        {
+          'id': 2,
+        }
+      ]
+    });
+
+    let errors = applyMatchingValidatorsTo(request);
+
+    assertThatErrorsContainsExactly(errors, {
+      path: 'items[1].statement',
+      message: 'Survey item statement is required.'
+    });
+  });
 });
 
 function buildCreateSurveyRequest(requestBody) {
   return {
     originalUrl: '/surveys',
     method: 'POST',
+    body: requestBody
+  };
+}
+
+function buildUpdateSurveyRequest(requestBody) {
+  return {
+    originalUrl: '/surveys/1',
+    method: 'PUT',
     body: requestBody
   };
 }

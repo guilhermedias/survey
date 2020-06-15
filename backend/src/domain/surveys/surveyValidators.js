@@ -1,7 +1,10 @@
 export default [
   {
     matches: (request) => {
-      return request.originalUrl === '/surveys' && request.method === 'POST';
+      return request.originalUrl.match(/\/surveys/) && (
+        request.method === 'PUT' ||
+        request.method === 'POST'
+      );
     },
 
     verify: (request) => {

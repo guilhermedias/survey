@@ -27,11 +27,11 @@ describe('The answer routes group', () => {
 
   it('creates an answer', async () => {
     let response = await axios.post('http://localhost:3004/answers', {
-      "surveyId": 1,
-      "items": [
+      'surveyId': 1,
+      'items': [
         {
-          "id": 1,
-          "selected": 4
+          'id': 1,
+          'selected': 4
         }
       ]
     });
@@ -47,6 +47,29 @@ describe('The answer routes group', () => {
       {
         id: 1,
         selected: 4
+      }
+    ]));
+  });
+
+  it('applies the validation', async () => {
+    let response = await captureHttpErrorResponse(async () => {
+      await axios.post('http://localhost:3004/answers', {
+        'items': [
+          {
+            'id': 1,
+            'selected': 4
+          }
+        ]
+      });
+    });
+
+    expect(response.status).toBe(400);
+
+    let errors = response.data.errors;
+    expect(errors).toEqual(expect.arrayContaining([
+      {
+        path: 'surveyId',
+        message: 'Survey ID is required.'
       }
     ]));
   });
@@ -147,11 +170,11 @@ describe('The answer routes group', () => {
     let answerId = await createAnswerWithDefaultValues();
 
     let response = await axios.put(`http://localhost:3004/answers/${answerId}`, {
-      "surveyId": 2,
-      "items": [
+      'surveyId': 2,
+      'items': [
         {
-          "id": 1,
-          "selected": 1
+          'id': 1,
+          'selected': 1
         }
       ]
     });
@@ -177,11 +200,11 @@ describe('The answer routes group', () => {
   it('returns 404 Not Found when trying to update nonexisting answer', async () => {
     assertThatItThrows404NotFound(async () => {
       await axios.put('http://localhost:3004/answers/3', {
-        "surveyId": 1,
-        "items": [
+        'surveyId': 1,
+        'items': [
           {
-            "id": 1,
-            "selected": 1
+            'id': 1,
+            'selected': 1
           }
         ]
       });
@@ -210,11 +233,11 @@ describe('The answer routes group', () => {
 
 async function createAnswerWithDefaultValues() {
   let response = await axios.post('http://localhost:3004/answers', {
-    "surveyId": 2,
-    "items": [
+    'surveyId': 2,
+    'items': [
       {
-        "id": 1,
-        "selected": 4
+        'id': 1,
+        'selected': 4
       }
     ]
   });
@@ -222,12 +245,17 @@ async function createAnswerWithDefaultValues() {
   return response.data.answerId;
 }
 
-async function assertThatItThrows404NotFound(httpRequestCodeBlock) {
+async function captureHttpErrorResponse(httpRequestCodeBlock) {
   try {
     await httpRequestCodeBlock();
-    fail('Expected 404 Not Found, but request suceeded');
+    fail('Expected error response, but request suceeded');
   } catch(error) {
-    expect(error.response.status).toBe(404);
-    expect(error.response.data).toBe('');
+    return error.response;
   }
+}
+
+async function assertThatItThrows404NotFound(httpRequestCodeBlock) {
+  let response = await captureHttpErrorResponse(httpRequestCodeBlock);
+  expect(response.status).toBe(404);
+  expect(response.data).toBe('');
 }

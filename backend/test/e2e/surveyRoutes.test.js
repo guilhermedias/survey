@@ -24,12 +24,12 @@ describe('The survey routes group', () => {
 
   it('creates a survey', async () => {
     let response = await axios.post('http://localhost:3004/surveys', {
-      "description": "Survey.",
-      "numberOfChoices": 5,
-      "items": [
+      'description': 'Survey.',
+      'numberOfChoices': 5,
+      'items': [
         {
-          "id": 1,
-          "statement": "Statement 1."
+          'id': 1,
+          'statement': 'Statement 1.'
         }
       ]
     });
@@ -53,11 +53,11 @@ describe('The survey routes group', () => {
   it('applies the validation', async () => {
     let response = await captureHttpErrorResponse(async () => {
       await axios.post('http://localhost:3004/surveys', {
-        "numberOfChoices": 5,
-        "items": [
+        'numberOfChoices': 5,
+        'items': [
           {
-            "id": 1,
-            "statement": "Statement 1."
+            'id': 1,
+            'statement': 'Statement 1.'
           }
         ]
       });
@@ -133,12 +133,12 @@ describe('The survey routes group', () => {
     let surveyId = await createSurveyWithDefaultValues();
 
     let response = await axios.put(`http://localhost:3004/surveys/${surveyId}`, {
-      "description": "Updated survey.",
-      "numberOfChoices": 5,
-      "items": [
+      'description': 'Updated survey.',
+      'numberOfChoices': 5,
+      'items': [
         {
-          "id": 1,
-          "statement": "Statement 1."
+          'id': 1,
+          'statement': 'Statement 1.'
         }
       ]
     });
@@ -165,12 +165,12 @@ describe('The survey routes group', () => {
   it('returns 404 Not Found when trying to update a nonexisting survey', async () => {
     assertThatItThrows404NotFound(async () => {
       await axios.put('http://localhost:3004/surveys/2', {
-        "description": "Updated survey.",
-        "numberOfChoices": 5,
-        "items": [
+        'description': 'Updated survey.',
+        'numberOfChoices': 5,
+        'items': [
           {
-            "id": 1,
-            "statement": "Statement 1."
+            'id': 1,
+            'statement': 'Statement 1.'
           }
         ]
       });
@@ -199,12 +199,12 @@ describe('The survey routes group', () => {
 
 async function createSurveyWithDefaultValues() {
   let response = await axios.post('http://localhost:3004/surveys', {
-    "description": "Survey.",
-    "numberOfChoices": 5,
-    "items": [
+    'description': 'Survey.',
+    'numberOfChoices': 5,
+    'items': [
       {
-        "id": 1,
-        "statement": "Statement 1."
+        'id': 1,
+        'statement': 'Statement 1.'
       }
     ]
   });

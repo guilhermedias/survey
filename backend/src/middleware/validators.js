@@ -1,6 +1,9 @@
 import surveyValidators from '../domain/surveys/surveyValidators.js';
+import answerValidators from '../domain/answers/answerValidators.js';
 
-const validators = surveyValidators;
+let validators = [];
+validators = validators.concat(surveyValidators);
+validators = validators.concat(answerValidators);
 
 export default (request, response, next) => {
   let validationErrors = [];

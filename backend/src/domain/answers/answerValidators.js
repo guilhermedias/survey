@@ -34,7 +34,7 @@ export default [
           if(!item.selected) {
             errors.push({
               path: `items[${index}].selected`,
-              message: 'Answer selected choice is required.'
+              message: 'Answer item selected choice is required.'
             });
           }
         });

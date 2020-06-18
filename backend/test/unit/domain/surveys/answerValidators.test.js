@@ -68,7 +68,7 @@ describe('The answer validation module', () => {
 
     assertThatErrorsContainsExactly(errors, {
       path: 'items[1].selected',
-      message: 'Answer selected choice is required.'
+      message: 'Answer item selected choice is required.'
     });
   });
 
@@ -139,7 +139,7 @@ describe('The answer validation module', () => {
 
     assertThatErrorsContainsExactly(errors, {
       path: 'items[1].selected',
-      message: 'Answer selected choice is required.'
+      message: 'Answer item selected choice is required.'
     });
   });
 });

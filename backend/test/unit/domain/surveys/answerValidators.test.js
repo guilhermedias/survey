@@ -71,6 +71,77 @@ describe('The answer validation module', () => {
       message: 'Answer selected choice is required.'
     });
   });
+
+  it('validates the survey ID in the update answer request body', () => {
+    let request = buildUpdateAnswerRequest({
+      'items': [
+        {
+          'id': 1,
+          'selected': 4
+        }
+      ]
+    });
+
+    let errors = applyMatchingValidatorsTo(request);
+
+    assertThatErrorsContainsExactly(errors, {
+      path: 'surveyId',
+      message: 'Survey ID is required.'
+    });
+  });
+
+  it('validates the items in the update answer request body', () => {
+    let request = buildUpdateAnswerRequest({
+      'surveyId': 1
+    });
+
+    let errors = applyMatchingValidatorsTo(request);
+
+    assertThatErrorsContainsExactly(errors, {
+      path: 'items',
+      message: 'Answer items are required.'
+    });
+  });
+
+  it('validates the item ID in the update answer request body', () => {
+    let request = buildUpdateAnswerRequest({
+      'surveyId': 1,
+      'items': [
+        {
+          'selected': 4
+        }
+      ]
+    });
+
+    let errors = applyMatchingValidatorsTo(request);
+
+    assertThatErrorsContainsExactly(errors, {
+      path: 'items[0].id',
+      message: 'Answer item ID is required.'
+    });
+  });
+
+  it('validates the selected choice in the update answer request body', () => {
+    let request = buildUpdateAnswerRequest({
+      'surveyId': 1,
+      'items': [
+        {
+          'id': 1,
+          'selected': 4
+        },
+        {
+          'id': 1
+        }
+      ]
+    });
+
+    let errors = applyMatchingValidatorsTo(request);
+
+    assertThatErrorsContainsExactly(errors, {
+      path: 'items[1].selected',
+      message: 'Answer selected choice is required.'
+    });
+  });
 });
 
 function buildCreateAnswerRequest(requestBody) {

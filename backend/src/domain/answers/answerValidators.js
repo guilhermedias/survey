@@ -2,6 +2,7 @@ export default [
   {
     matches: (request) => {
       return request.originalUrl.match(/\/answers/) && (
+        request.method === 'PUT' ||
         request.method === 'POST'
       );
     },

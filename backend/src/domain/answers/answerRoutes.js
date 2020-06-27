@@ -10,7 +10,9 @@ export default (answerModel) => {
 
     response
       .status(201)
-      .send(createdAnswer);
+      .send({
+        answerId: createdAnswer.answerId
+      });
   });
 
   routes.get('/', async (request, response) => {

@@ -39,16 +39,7 @@ describe('The answer routes group', () => {
     expect(response.status).toBe(201);
 
     let answer = response.data;
-    expect(answer.surveyId).toBe(1);
-    expect(answer.items).toHaveLength(1);
-
-    let items = answer.items;
-    expect(items).toEqual(expect.arrayContaining([
-      {
-        id: 1,
-        selected: 4
-      }
-    ]));
+    expect(answer).toHaveProperty('answerId');
   });
 
   it('applies the validation', async () => {

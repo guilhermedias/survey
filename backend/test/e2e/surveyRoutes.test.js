@@ -37,17 +37,7 @@ describe('The survey routes group', () => {
     expect(response.status).toBe(201);
 
     let survey = response.data;
-    expect(survey.description).toBe('Survey.');
-    expect(survey.numberOfChoices).toBe(5);
-    expect(survey.items).toHaveLength(1);
-
-    let items = survey.items;
-    expect(items).toEqual(expect.arrayContaining([
-      {
-        id: 1,
-        statement: 'Statement 1.'
-      }
-    ]));
+    expect(survey).toHaveProperty('surveyId');
   });
 
   it('applies the validation', async () => {

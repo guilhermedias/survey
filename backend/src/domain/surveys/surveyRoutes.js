@@ -10,7 +10,9 @@ export default (surveyModel) => {
 
     response
       .status(201)
-      .send(createdSurvey);
+      .send({
+        surveyId: createdSurvey.surveyId
+      });
   });
 
   routes.get('/', async (request, response) => {

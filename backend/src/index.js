@@ -16,11 +16,12 @@ import hideFields from './middleware/hideFields.js';
 (async () => {
   const app = express();
   const port = process.env.SERVER_PORT || 3004;
+  const databaseHost = process.env.DATABASE_HOST || 'localhost';
   const databaseUsername = process.env.DATABASE_USERNAME || 'survey';
   const databasePassword = process.env.DATABASE_PASSWORD || 'survey';
 
   // Mongoose configuration
-  let databaseURL = `mongodb://${databaseUsername}:${databasePassword}@localhost:27017/survey`;
+  let databaseURL = `mongodb://${databaseUsername}:${databasePassword}@${databaseHost}:27017/survey`;
 
   let connection = await mongoose.connect(databaseURL, {
     useUnifiedTopology: true,

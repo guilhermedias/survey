@@ -8,4 +8,4 @@ docker run -d --name survey\
   -e MONGO_INITDB_ROOT_PASSWORD=admin\
   -e MONGO_INITDB_DATABASE=survey\
   -v $CONFIG_DIR:/docker-entrypoint-initdb.d/\
-  mongo > /dev/null
+  mongo:3.6.18 > /dev/null

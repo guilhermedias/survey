@@ -47,6 +47,8 @@ import hideFields from './middleware/hideFields.js';
   app.use('/surveys', surveyRoutes);
   app.use('/answers', answerRoutes);
 
+  app.use(express.static('public'));
+
   app.listen(port, () => {
     console.log(`Survey backend listening at http://localhost:${port}`); 
   });

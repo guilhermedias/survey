@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  database:
+    build: backend/scripts/database/
+    image: survey-database
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGO_INITDB_DATABASE=survey
+    ports:
+      - '27017:27017'
+  application:
+    build: .
+    image: survey-application
+    environment:
+      - DATABASE_HOST=database
+    ports:
+      - '3004:3004'
+    depends_on:
+      - database

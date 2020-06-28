@@ -2,19 +2,19 @@
   "surveys": [
     {
       "id": 1,
-      "description": "Likert group description.",
-      "numberOfChoices": 7,
+      "description": "Survey 1.",
+      "numberOfChoices": 5,
       "items": [
         {
           "id": 1,
-          "statement": "Likert item statement 1."
+          "statement": "Statement 1."
         },
         {
           "id": 2,
-          "statement": "Likert item statement 2."
+          "statement": "statement 2."
         }
       ]
     }
   ],
-  "data": []
+  "answers": []
 }

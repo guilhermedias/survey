@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LikertGroup from './components/LikertGroup/LikertGroup';
+import Home from './pages/Home/Home';
 import './index.css';
 
-ReactDOM.render(<LikertGroup description = "Likert group description." numberOfChoices = "7" />, document.getElementById('root'));
+ReactDOM.render(<Home />, document.getElementById('root'));

@@ -47,6 +47,8 @@ class LikertGroup extends React.Component {
     };
 
     await SurveysAPI.saveAnswer(answer);
+
+    this.props.onSubmit();
   }
 
   async componentDidMount() {

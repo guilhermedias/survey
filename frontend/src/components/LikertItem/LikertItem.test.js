@@ -4,13 +4,13 @@ import { shallow } from 'enzyme';
 
 describe('LikertItem component', () => {
   it('renders the item statement', () => {
-    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." selectionHandler = { jest.fn() } numberOfChoices = "5" />);
+    let wrapper = shallow(<LikertItem id = '1' statement = 'Item statement.' selectionHandler = { jest.fn() } numberOfChoices = '5' />);
 
     expect(wrapper).toIncludeText('Item statement.');
   });
 
   it('renders the correct number of choices based on property', () => {
-    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." selectionHandler = { jest.fn() } numberOfChoices = "7" />);
+    let wrapper = shallow(<LikertItem id = '1' statement = 'Item statement.' selectionHandler = { jest.fn() } numberOfChoices = '7' />);
 
     let choices = wrapper
       .find('.choices')
@@ -20,7 +20,7 @@ describe('LikertItem component', () => {
   });
 
   it('assigns correct integer key to the choices', () => {
-    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." selectionHandler = { jest.fn() } numberOfChoices = "5" />);
+    let wrapper = shallow(<LikertItem id = '1' statement = 'Item statement.' selectionHandler = { jest.fn() } numberOfChoices = '5' />);
 
     let choices = wrapper
       .find('.choices');
@@ -33,7 +33,7 @@ describe('LikertItem component', () => {
   });
 
   it('renders the selected choice', () => {
-    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." selectionHandler = { jest.fn() } selected = "3" numberOfChoices = "5" />);
+    let wrapper = shallow(<LikertItem id = '1' statement = 'Item statement.' selectionHandler = { jest.fn() } selected = '3' numberOfChoices = '5' />);
 
     let middleChoice = wrapper
       .find('.choices')
@@ -44,7 +44,7 @@ describe('LikertItem component', () => {
 
   it('invokes the selection handler', () => {
     let handler = jest.fn();
-    let wrapper = shallow(<LikertItem id = "1" statement = "Item statement." selectionHandler = { handler } numberOfChoices = "5" />);
+    let wrapper = shallow(<LikertItem id = '1' statement = 'Item statement.' selectionHandler = { handler } numberOfChoices = '5' />);
 
     let middleChoice = wrapper
       .find('.choices')

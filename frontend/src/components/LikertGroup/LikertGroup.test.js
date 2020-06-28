@@ -19,11 +19,11 @@ describe('LikertGroup component', () => {
       items: [
         {
           id: 1,
-          statement: "Likert item statement 1."
+          statement: 'Likert item statement 1.'
         },
         {
           id: 2,
-          statement: "Likert item statement 2."
+          statement: 'Likert item statement 2.'
         }
       ]
     });
@@ -76,7 +76,7 @@ describe('LikertGroup component', () => {
       items: [
         {
           id: 1,
-          statement: "Likert item statement 1."
+          statement: 'Likert item statement 1.'
         }
       ]
     });

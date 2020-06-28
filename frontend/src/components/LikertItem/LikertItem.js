@@ -43,12 +43,12 @@ class LikertItem extends React.Component {
     let choices = choiceIds.map((choiceId) => this.buildChoiceWith(choiceId));
 
     return (
-      <div className="likert-item">
-        <div className = "statement">
+      <div className='likert-item'>
+        <div className = 'statement'>
           { this.props.statement }
         </div>
 
-        <div className = "choices">
+        <div className = 'choices'>
           { choices }
         </div>
       </div>

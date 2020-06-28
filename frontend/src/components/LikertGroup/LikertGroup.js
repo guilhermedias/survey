@@ -75,8 +75,8 @@ class LikertGroup extends React.Component {
     });
 
     return (
-      <div className = "likert-group">
-        <div className = "likert-group-description">
+      <div className = 'likert-group'>
+        <div className = 'likert-group-description'>
           { this.state.description }
         </div>
 

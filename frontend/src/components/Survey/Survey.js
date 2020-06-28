@@ -2,9 +2,9 @@ import React from 'react';
 import LikertItem from '../LikertItem/LikertItem';
 import SubmitButton from '../SubmitButton/SubmitButton';
 import SurveysAPI from '../../api/surveys/surveys';
-import './LikertGroup.css';
+import './Survey.css';
 
-class LikertGroup extends React.Component {
+class Survey extends React.Component {
   constructor(props) {
     super(props);
 
@@ -88,4 +88,4 @@ class LikertGroup extends React.Component {
   }
 }
 
-export default LikertGroup;
+export default Survey;

@@ -1,5 +1,5 @@
 import React from 'react';
-import LikertGroup from './LikertGroup';
+import Survey from './Survey';
 import LikertItem from '../LikertItem/LikertItem';
 import SubmitButton from '../SubmitButton/SubmitButton';
 import SurveysAPI from '../../api/surveys/surveys';
@@ -10,7 +10,7 @@ jest.mock('../../api/surveys/surveys');
 const flushPromises = () =>
   new Promise(resolve => setImmediate(resolve));
 
-describe('LikertGroup component', () => {
+describe('Survey component', () => {
   beforeAll(() => {
     SurveysAPI.getSurveyByID.mockResolvedValue({
       surveyId: 1,
@@ -34,14 +34,14 @@ describe('LikertGroup component', () => {
   });
 
   it('renders the group description', async () => {
-    let wrapper = shallow(<LikertGroup onSubmit = { () => {} }/>);
+    let wrapper = shallow(<Survey onSubmit = { () => {} }/>);
     await flushPromises();
 
     expect(wrapper).toIncludeText('Likert group description.');
   });
 
   it('renders the submit button', async () => {
-    let wrapper = shallow(<LikertGroup onSubmit = { () => {} }/>);
+    let wrapper = shallow(<Survey onSubmit = { () => {} }/>);
     await flushPromises();
 
     let submitButtonExists = wrapper.exists(SubmitButton);
@@ -50,7 +50,7 @@ describe('LikertGroup component', () => {
   });
 
   it('renders the correct number of Likert items', async () => {
-    let wrapper = shallow(<LikertGroup onSubmit = { () => {} }/>);
+    let wrapper = shallow(<Survey onSubmit = { () => {} }/>);
     await flushPromises();
 
     let items = wrapper
@@ -60,7 +60,7 @@ describe('LikertGroup component', () => {
   });
 
   it('renders the Likert items with the correct number of choices', async () => {
-    let wrapper = shallow(<LikertGroup onSubmit = { () => {} }/>);
+    let wrapper = shallow(<Survey onSubmit = { () => {} }/>);
     await flushPromises();
 
     let item = wrapper
@@ -81,7 +81,7 @@ describe('LikertGroup component', () => {
       ]
     });
 
-    let wrapper = shallow(<LikertGroup onSubmit = { () => {} }/>);
+    let wrapper = shallow(<Survey onSubmit = { () => {} }/>);
     await flushPromises();
 
     wrapper.instance().selectionHandler(1, 3);
@@ -91,7 +91,7 @@ describe('LikertGroup component', () => {
   });
 
   it('saves answer when the submit button is clicked', async () => {
-    let wrapper = shallow(<LikertGroup onSubmit = { () => {} }/>);
+    let wrapper = shallow(<Survey onSubmit = { () => {} }/>);
     await flushPromises();
 
     wrapper.setState({
@@ -130,7 +130,7 @@ describe('LikertGroup component', () => {
 
   it('calls the home page submission handler when the submit button is clicked', async () => {
     let handler = jest.fn();
-    let wrapper = shallow(<LikertGroup onSubmit = { handler }/>);
+    let wrapper = shallow(<Survey onSubmit = { handler }/>);
     await flushPromises();
 
     wrapper

@@ -1,5 +1,5 @@
 import React from 'react';
-import LikertGroup from '../../components/LikertGroup/LikertGroup';
+import Survey from '../../components/Survey/Survey';
 import SubmittedMessage from '../../components/SubmittedMessage/SubmittedMessage';
 
 class Home extends React.Component {
@@ -21,7 +21,7 @@ class Home extends React.Component {
     return (
       this.state.submitted
       ? <SubmittedMessage />
-      : <LikertGroup onSubmit = {this.submissionHandler.bind(this)} />
+      : <Survey onSubmit = {this.submissionHandler.bind(this)} />
     );
   }
 }

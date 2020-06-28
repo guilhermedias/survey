@@ -9,7 +9,7 @@ class SubmittedMessage extends React.Component {
           Thank you!
         </div>
         <div className = 'submitted-message-text'>
-          Your response has been submitted.
+          Your answer has been submitted.
         </div>
       </div>
     );

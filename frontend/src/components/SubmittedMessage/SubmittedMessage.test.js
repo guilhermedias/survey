@@ -6,6 +6,6 @@ describe('SubmittedMessage component', () => {
   it('renders the message', () => {
     let wrapper = shallow(<SubmittedMessage />);
 
-    expect(wrapper).toIncludeText('Your response has been submitted.');
+    expect(wrapper).toIncludeText('Your answer has been submitted.');
   });
 });
